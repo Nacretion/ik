@@ -3,7 +3,7 @@ import {ReactComponent as ArrowBack} from "../../svg/arrow-back.svg";
 import {ReactComponent as ArrowForward} from "../../svg/arrow-forward.svg";
 import {VisibleContext} from "../../context";
 
-const NavArrows = () => {
+const NavArrows = ({funcNext, funcPrev}) => {
     const {toPrevTheme, toNextTheme, textColor} = useContext(VisibleContext)
     return (
         <div className="arrow-inner">
@@ -16,7 +16,7 @@ const NavArrows = () => {
                     transition: ".5s"
                 }
                 }
-                onClick={toPrevTheme} className="arrow m-right"/>
+                onClick={funcPrev || toPrevTheme} className="arrow m-right"/>
             <ArrowForward
                 style={textColor === "#ffffff" ? {
                     filter: "invert(100%) sepia(99%) saturate(0%) hue-rotate(282deg) brightness(113%) contrast(100%)",
@@ -26,7 +26,7 @@ const NavArrows = () => {
                     transition: ".5s"
                 }
                 }
-                onClick={toNextTheme} className="arrow m-right"/>
+                onClick={funcNext || toNextTheme} className="arrow m-right"/>
         </div>
     );
 };

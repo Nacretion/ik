@@ -5,9 +5,9 @@ import NavCircles from "../components/NavCircles";
 import {ReactComponent as ArrowTop} from "../svg/arrow-top.svg";
 import {useNavigate} from "react-router-dom";
 
-const All = () => {
+export default function All() {
 
-    const { heading, textColor, firstImage, secondImage, setCurrentTheme } = useContext(VisibleContext)
+    const { heading, textColor } = useContext(VisibleContext)
 
     const navigate = useNavigate()
 
@@ -40,5 +40,3 @@ const All = () => {
         </>
     );
 };
-
-export default All;
