@@ -1,25 +1,27 @@
+import React, {useEffect, useState} from "react";
 import './App.css';
-import {IoAddOutline} from "react-icons/io5";
-import {useEffect, useState} from "react";
-import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
+import HomePage from "./pages/HomePage";
+import {VisibleContext} from "./context";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import {
+    automobileTheme,
     cafeTheme,
     clothTheme,
     cosmeticsTheme,
-    medicineTheme,
-    automobileTheme,
-    sportTheme,
     educationTheme,
-    lawTheme,
-    repairTheme,
     estateTheme,
-    productsTheme
+    lawTheme,
+    medicineTheme,
+    productsTheme,
+    repairTheme,
+    sportTheme
 } from "./themes/themes";
-import NavCircles from "./components/NavCircles";
-import Stories from 'react-insta-stories';
+import All from "./pages/All";
+// import Stories from 'stories-react';
+// import 'stories-react/dist/index.css';
 
 
-function App() {
+export default function App() {
     const [currentTheme, setCurrentTheme] = useState(0)
     const [textColor, changeTextColor] = useState("")
     const [bgColor, changeBgColor] = useState("")
@@ -27,39 +29,22 @@ function App() {
     const [firstImage, setFirstImage] = useState("")
     const [secondImage, setSecondImage] = useState("")
 
+    const navigate = useNavigate();
 
-    const story = [
-        {
-            duration: 400,
-            content: ({ action, isPaused }) => {
-                const handleClick = e => {
-                    e.preventDefault();
-                    action(isPaused ? "play" : "pause");
-                };
-                return (
-                    <div onClick={handleClick}>
-                        <h2>Hi</h2>
-                        <span>{isPaused ? "Paused" : "Playing"}</span>
-                    </div>
-                );
-            },
-        },
-        {
-            duration: 400,
-            content: ({ action, isPaused }) => {
-                const handleClick = e => {
-                    e.preventDefault();
-                    action(isPaused ? "play" : "pause");
-                };
-                return (
-                    <div onClick={handleClick}>
-                        <h2>Hi</h2>
-                        <span>{isPaused ? "Paused" : "Playing"}</span>
-                    </div>
-                );
-            },
-        },
-    ];
+    // const stories = [
+    //     {
+    //
+    //         type: 'image',
+    //         url: 'https://lh3.googleusercontent.com/_X4oEpRu4O-nv0KuFwJQV2zX5SLuwRg9fIM1_-Q29L50zDgRd2eLdEr0ZmLVk_cPLA4',
+    //         duration: 1500,
+    //     },
+    //     {
+    //
+    //         type: 'image',
+    //         url: "https://www.soccerex.com/media/8004/img.jpg?anchor=center&mode=crop&width=750&height=422&rnd=131660981050000000",
+    //         duration: 1500,
+    //     }
+    // ]
 
     const changeTheme = (color, bgColor, heading, fImage, sImage) => {
         changeTextColor(color)
@@ -68,7 +53,6 @@ function App() {
         setFirstImage(fImage)
         setSecondImage(sImage)
     }
-
     useEffect(() => {
         switch (currentTheme) {
             case 1:
@@ -163,7 +147,6 @@ function App() {
                 break;
         }
     }, [currentTheme, setCurrentTheme])
-
     const toPrevTheme = () => {
         if (currentTheme > 0) setCurrentTheme(currentTheme - 1)
         else setCurrentTheme(10)
@@ -173,59 +156,55 @@ function App() {
         else setCurrentTheme(0)
     }
 
+    function listenWheelEvent(event) {
+        // eslint-disable-next-line no-unused-expressions
+        event.deltaY > 0 ?
+            toNextTheme()
+                : toPrevTheme()
+    }
 
     return (
-        <div className="App" style={{color: textColor, backgroundColor: bgColor}}>
-            <main>
-                <div className="about">
-                    <h1>О нас</h1>
-                    <div className="buttons-inner">
-                        <Stories
-                            stories={story}
-                            defaultInterval={1500}
-                            width={432}
-                            height={768}/>
-                        <button className="button circle-button"></button>
-                    </div>
-                </div>
-                <div className="cafe">
-                    <div className="link-heading">
-                        <h1>{heading}</h1>
 
-                        <div>
-                            <IoIosArrowBack onClick={toPrevTheme} className="arrow" size={44}/>
-                            <IoIosArrowForward onClick={toNextTheme} className="arrow" size={44}/>
-                        </div>
-                    </div>
-                    <div className="cards-inner">
-                        <button
-                            style={{
-                                background: firstImage
-                            }}
-                            className="card card-cafe"
-                            id="card1">
-                        </button>
-
-                        <button
-                            style={{
-                                background: secondImage
-                            }}
-                            className="card card-cafe"
-                            id="card2">
-                        </button>
-
-                        <button className="card card-add">
-                            <div className="icon-contain">
-                                <IoAddOutline size={24} style={{margin: "1vh"}}/>
-                                Добавить сайт
-                            </div>
-                        </button>
-                    </div>
-                    <NavCircles textColor={textColor} setCurrentTheme={setCurrentTheme}/>
-                </div>
-            </main>
+        <div onWheel={listenWheelEvent.bind(this)} className="App" style={{color: textColor, backgroundColor: bgColor}}>
+            <VisibleContext.Provider value={{
+                heading,
+                textColor,
+                firstImage,
+                secondImage,
+                toPrevTheme,
+                toNextTheme,
+                setCurrentTheme
+            }}>
+                <Content/>
+            </VisibleContext.Provider>
         </div>
     );
 }
 
-export default App;
+function Content() {
+    const location = useLocation();
+
+    const [displayLocation, setDisplayLocation] = useState(location);
+    const [transitionStage, setTransitionStage] = useState("fadeIn");
+
+    useEffect(() => {
+        if (location !== displayLocation) setTransitionStage("fadeOut");
+    }, [location, displayLocation]);
+
+    return (
+        <div
+            className={`${transitionStage}`}
+            onAnimationEnd={() => {
+                if (transitionStage === "fadeOut") {
+                    setTransitionStage("fadeIn");
+                    setDisplayLocation(location);
+                }
+            }}
+        >
+            <Routes location={displayLocation}>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/all" element={<All/>}/>
+            </Routes>
+        </div>
+    );
+}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ijsto/react-slideout": "^1.4.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,8 +11,13 @@
     "react-dom": "^18.1.0",
     "react-icons": "^4.3.1",
     "react-insta-stories": "^2.3.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-spring": "^9.4.5",
+    "react-transition-group": "^4.4.2",
+    "stories-react": "^1.0.18",
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.18"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.16.7"
   }
 }

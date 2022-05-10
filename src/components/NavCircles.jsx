@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
     automobileTheme,
     cafeTheme,
     clothTheme,
     cosmeticsTheme,
-    educationTheme, estateTheme, lawTheme,
-    medicineTheme, productsTheme, repairTheme,
+    educationTheme,
+    estateTheme,
+    lawTheme,
+    medicineTheme,
+    productsTheme,
+    repairTheme,
     sportTheme
 } from "../themes/themes";
+import {VisibleContext} from "../context";
 
-const NavCircles = ({textColor, setCurrentTheme}) => {
+const NavCircles = () => {
+
+    const { textColor, setCurrentTheme } = useContext(VisibleContext)
     return (
-        <div className="circles">
             <div className="buttons-inner">
                 <button
                     style={{
@@ -102,7 +108,6 @@ const NavCircles = ({textColor, setCurrentTheme}) => {
                     onClick={() => setCurrentTheme(10)}
                     className="button circle-button" id="theme11"></button>
             </div>
-        </div>
     );
 };
 
