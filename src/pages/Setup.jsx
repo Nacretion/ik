@@ -5,7 +5,7 @@ import {VisibleContext} from "../context";
 import {useNavigate} from "react-router-dom";
 
 export const Setup = ({funcPrev}) => {
-    const { textColor, toPrevTheme } = useContext(VisibleContext)
+    const { textColor } = useContext(VisibleContext)
 
     const navigate = useNavigate();
 
@@ -27,7 +27,21 @@ export const Setup = ({funcPrev}) => {
                 </div>
             </header>
             <main>
-
+                <div className="cards-wrapper">
+                    <div className="card-inner">
+                        <p>продвижение в вк</p>
+                        <div className="card"></div>
+                    </div>
+                    <div className="card-inner">
+                        <p>разработать сайт</p>
+                        <div className="card"></div>
+                    </div>
+                    <div className="card-inner">
+                        <p>добавить данные</p>
+                        <div className="card half-height"></div>
+                        <div className="card half-height"></div>
+                    </div>
+                </div>
             </main>
             <footer>
 

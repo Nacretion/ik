@@ -1,16 +1,17 @@
 import React, {useContext} from 'react';
-import {IoAddOutline} from "react-icons/io5";
 import NavCircles from "../components/NavCircles";
 import {ReactComponent as ArrowBottom} from "../svg/arrow-bottom.svg";
 import {useNavigate} from "react-router-dom";
 import {VisibleContext} from "../context";
 import NavArrows from "../components/UI/NavArrows";
+import {stories, cards} from "../consts/consts";
 
 const HomePage = () => {
 
-    const { heading, textColor, firstImage, secondImage, setCurrentTheme, bgColor } = useContext(VisibleContext)
+    const { heading, textColor, setCurrentTheme, currentTheme, indexes} = useContext(VisibleContext)
 
 
+    // console.log(cards[currentTheme].slice(indexes[0], indexes[1]))
     const navigate = useNavigate();
     return (
         <>
@@ -19,87 +20,17 @@ const HomePage = () => {
                     {/*<Stories*/}
                     {/*    width="400px"*/}
                     {/*    height="600px"*/}
-                    {/*    stories={stories}*/}
-                    <section className="svg-container">
-                        <svg style={{backgroundColor: bgColor}} className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className="svg-container">
-                        <svg className="circle" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                            </g>
-                        </svg>
-                    </section>
+                    {/*    consts={consts}*/}
+                    {stories.map(({bgColor}) => (
+                        <section key={bgColor} className="svg-container">
+                            <svg style={{backgroundColor: bgColor}} className="circle" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
+                                    <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
+                                </g>
+                            </svg>
+                        </section>
+                    ))}
                 </div>
                 <p className="heading" onClick={() => navigate("/setup")}>ik-Market</p>
             </header>
@@ -109,32 +40,15 @@ const HomePage = () => {
                     <NavArrows />
                 </div>
                 <div className="cards-inner">
-                    <button
-                        style={{
-                            background: firstImage
-                        }}
-                        className="card card-cafe"
-                        id="card1">
-                    </button>
-                    <button
-                        style={{
-                            background: secondImage
-                        }}
-                        className="card card-cafe"
-                        id="card2">
-                    </button>
-                    <button
-                        className="card card-cafe"
-                        id="card2">
-                    </button>
-                    <button
-                        className="card card-cafe"
-                        id="card2">
-                    </button>
-                    <button
-                        className="card card-cafe"
-                        id="card2">
-                    </button>
+                    {cards[currentTheme].slice(indexes[0],indexes[1]).map(({image}) => (
+                        <button
+                            key={image}
+                            style={{
+                                background: image
+                            }}
+                            className="card card-cafe">
+                        </button>
+                    ))}
                 </div>
 
             </main>

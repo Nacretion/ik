@@ -72,13 +72,37 @@ header .heading {
 main {
     margin-top: 35px;
 }
-
-.cards-inner {
+.cards-wrapper, .cards-inner {
     margin: 2vh 0;
     display: grid;
     justify-items: center;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 30px;
+    grid-gap: 10px;
+}
+
+.card-inner {
+    font-size: 2pt;
+    text-transform: uppercase;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0.6;
+
+    height: 540px;
+    width: 100;
+}
+.card-inner .card {
+    background-color: #fff;
+    height: 90%;
+}
+.card-inner .half-height {
+    height: 40%;
+}
+
+.cards-inner {
+    grid-template-rows: 1fr 1fr;
 }
 
 .card {
@@ -176,8 +200,8 @@ main {
     height: 124px;
     position: relative;
     width: 124px;
-    transform: scale(.65) translateX(20px);
-    margin-left: -30px;
+    transform: scale(.55) translateX(30px);
+    margin-left: -40px;
 }
 .circle {
     height: 124px;
