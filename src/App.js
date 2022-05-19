@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import './App.css';
-import HomePage from "./pages/HomePage";
+import './styles/App.scss';
+import './styles/rootAnimation.css';
 import {VisibleContext} from "./context";
 import {Route, Routes, useLocation} from "react-router-dom";
 import {themes, cards} from "./consts/consts"
+import HomePage from "./pages/HomePage";
 import All from "./pages/All";
-import {Setup} from "./pages/Setup";
+import Setup from "./pages/Setup";
 // import Stories from 'consts-react';
 // import 'consts-react/dist/index.css';
 
@@ -107,8 +108,7 @@ function Content() {
                     setTransitionStage("fadeIn");
                     setDisplayLocation(location);
                 }
-            }}
-        >
+            }}>
             <Routes location={displayLocation}>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/all" element={<All/>}/>

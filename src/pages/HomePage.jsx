@@ -6,12 +6,10 @@ import {VisibleContext} from "../context";
 import NavArrows from "../components/UI/NavArrows";
 import {stories, cards} from "../consts/consts";
 
-const HomePage = () => {
+export default function HomePage () {
 
     const { heading, textColor, setCurrentTheme, currentTheme, indexes} = useContext(VisibleContext)
 
-
-    // console.log(cards[currentTheme].slice(indexes[0], indexes[1]))
     const navigate = useNavigate();
     return (
         <>
@@ -22,19 +20,12 @@ const HomePage = () => {
                     {/*    height="600px"*/}
                     {/*    consts={consts}*/}
                     {stories.map(({bgColor}) => (
-                        <section key={bgColor} className="svg-container">
-                            <svg style={{backgroundColor: bgColor}} className="circle" xmlns="http://www.w3.org/2000/svg">
-                                <g>
-                                    <ellipse className="background" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                    <ellipse className="foreground" ry="60" rx="60" cy="62.5" cx="62.5" strokeWidth="2"/>
-                                </g>
-                            </svg>
-                        </section>
+                        <div style={{backgroundColor: bgColor}} className="circle-button"></div>
                     ))}
                 </div>
-                <p className="heading" onClick={() => navigate("/setup")}>ik-Market</p>
+                <p className="heading" onClick={() => navigate("/setup")}>О нас</p>
             </header>
-            <main className="cafe">
+            <main>
                 <div className="link-heading">
                     <p className="heading">{heading}</p>
                     <NavArrows />
@@ -52,7 +43,7 @@ const HomePage = () => {
                 </div>
 
             </main>
-            <footer className="circles link-heading">
+            <footer>
                 <NavCircles textColor={textColor} setCurrentTheme={setCurrentTheme}/>
                 <div className="arrow-inner link" onClick={() => navigate("/all")}>
                     <p className="heading">Все</p>
@@ -71,5 +62,3 @@ const HomePage = () => {
         </>
     );
 };
-
-export default HomePage;

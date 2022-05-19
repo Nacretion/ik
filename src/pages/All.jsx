@@ -22,7 +22,7 @@ export default function All() {
             <main style={{height: "50vh"}}>
 
             </main>
-            <footer className="circles link-heading">
+            <footer>
                 <NavCircles/>
                 <div className="arrow-inner link" onClick={() => navigate("/")}>
                     <ArrowTop
