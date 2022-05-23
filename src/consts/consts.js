@@ -4,7 +4,7 @@ export const themes = [
     {heading: "Красота", backgroundColor: "#E8445F", color: "#ffffff"},
     {heading: "Медицина", backgroundColor: "#669B9C", color: "#ffffff"},
     {heading: "Автоуслуги", backgroundColor: "#125374", color: "#ffffff"},
-    {heading: "Спорт/досуг", backgroundColor: "#EFB7B7", color: "#ffffff"},
+    {heading: "Спорт/досуг", backgroundColor: "#EFB7B7", color: "#000000"},
     {heading: "Образование", backgroundColor: "#B1E1A2", color: "#000000"},
     {heading: "Юридические услуги", backgroundColor: "#99B898", color: "#ffffff"},
     {heading: "Ремонт/быт", backgroundColor: "#D7E1F1", color: "#000000"},

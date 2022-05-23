@@ -1,0 +1,45 @@
+.loader {
+    transition: 1s;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 20px 20px;
+    animation: loaderGap 2s infinite ease-in-out;
+    opacity: .7;
+}
+
+.loader--circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.78);
+}
+
+.loader .circle1 {
+    background-color: #9D65C9;
+}
+.loader .circle2 {
+    background-color: #FBD46D;
+}
+.loader .circle3 {
+    background-color: #E8445F;
+}
+.loader .circle4 {
+    background-color: #125374;
+}
+
+@keyframes loaderGap {
+    from {
+        gap: 0;
+    }
+    50% {
+        gap: 15px;
+        transform: rotate(180deg);
+    }
+    to {
+        gap: 0;
+        transform: rotate(360deg);
+    }
+}

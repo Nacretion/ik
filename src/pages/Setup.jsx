@@ -8,7 +8,7 @@ import NavCircles from "../components/NavCircles";
 import CheckBox from "../components/UI/CheckBox";
 
 export default function Setup({funcPrev}) {
-    const {textColor} = useContext(VisibleContext)
+    const {textColor, bgColor} = useContext(VisibleContext)
     const [carousel, setCarousel] = useState(["card1", "card2", "card3"])
 
     const [photos, setPhotos] = useState(false);
@@ -36,10 +36,22 @@ export default function Setup({funcPrev}) {
             </header>
             <main style={{height: "500px"}}>
                 <div className="cards-wrapper">
+                    <div className={"card-inner " + carousel[0]}>
+                        <p style={{color: "rgba(0,0,0,0)"}}>продвижение в вк</p>
+                        <div style={{backgroundColor: bgColor, zIndex: "100", opacity: "1"}}  className="card"> </div>
+                    </div>
+                    <div className={"card-inner " + carousel[1]}>
+                        <p style={{color: "rgba(0,0,0,0)"}}>продвижение в вк</p>
+                        <div style={{backgroundColor: bgColor, zIndex: "100", opacity: "1"}}  className="card"> </div>
+                    </div>
+                    <div className={"card-inner " + carousel[2]}>
+                        <p style={{color: "rgba(0,0,0,0)"}}>продвижение в вк</p>
+                        <div style={{backgroundColor: bgColor, zIndex: "100", opacity: "1"}}  className="card"> </div>
+                    </div>
                     <div className={"card-inner " + carousel[0]}
                          onClick={() => setCarousel(["card2", "card1", "card3"])}>
                         <p>продвижение в вк</p>
-                        <div className="card"></div>
+                        <div className="card"> </div>
                     </div>
                     <div className={"card-inner " + carousel[1]}
                          onClick={() => setCarousel(["card1", "card2", "card3"])}>
@@ -47,24 +59,26 @@ export default function Setup({funcPrev}) {
                         <div className="card">
                             <div className="styled-input-container styled-input--square">
                                 <CheckBox
-                                    id="check1" disabled checked readOnly >687</CheckBox>
+                                    id="check1" disabled checked readOnly >Стилизация сайта под
+                                    дизайн компании</CheckBox>
                                 <CheckBox
                                     id={"check2"} checked={photos}
-                                    onChange={e => {setPhotos(e.target.checked)}}>7865</CheckBox>
+                                    onChange={e => {setPhotos(e.target.checked)}}>Фотографии заведения</CheckBox>
                                 <CheckBox
                                     id={"check3"} checked={cart}
-                                    onChange={e => {setCart(e.target.checked)}}>7865</CheckBox>
+                                    onChange={e => {setCart(e.target.checked)}}>Меню с фотографиями,
+                                    описанием и ценой</CheckBox>
                                 <CheckBox
                                     id={"check4"} checked={networks}
-                                    onChange={e => {setNetworks(e.target.checked)}}>7865</CheckBox>
+                                    onChange={e => {setNetworks(e.target.checked)}}>Функция корзины с
+                                    выбором товара и отправки заявки</CheckBox>
                             </div>
                         </div>
                     </div>
                     <div className={"card-inner " + carousel[2]}
                          onClick={() => setCarousel(["card1", "card3", "card2"])}>
                         <p>добавить данные</p>
-                        <div className="card half-height"></div>
-                        <div className="card half-height"></div>
+                        <div className="card"> </div>
                     </div>
                 </div>
             </main>

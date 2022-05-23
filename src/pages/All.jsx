@@ -4,6 +4,7 @@ import {VisibleContext} from "../context";
 import NavCircles from "../components/NavCircles";
 import {ReactComponent as ArrowTop} from "../svg/arrow-top.svg";
 import {useNavigate} from "react-router-dom";
+import Loader from "../components/Loader";
 
 export default function All() {
 
@@ -20,7 +21,7 @@ export default function All() {
                 </div>
             </header>
             <main style={{height: "50vh"}}>
-
+                <Loader/>
             </main>
             <footer>
                 <NavCircles/>

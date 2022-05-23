@@ -1,5 +1,7 @@
 import React, {useContext} from 'react';
 import {VisibleContext} from "../context";
+import Tooltip from '@mui/material/Tooltip';
+import {styled, tooltipClasses} from "@mui/material";
 
 const NavCircles = () => {
 
@@ -18,19 +20,27 @@ const NavCircles = () => {
         { title: "Недвижимость", theme: 9 },
         { title: "Продукты", theme: 10 },
     ]
-
+    const LightTooltip = styled(({ className, ...props }) => (
+        <Tooltip {...props} classes={{ popper: className }} />
+    ))(() => ({
+        [`& .${tooltipClasses.tooltip}`]: {
+            backgroundColor: "#000",
+            color: {textColor},
+            fontSize: 11,
+        },
+    }));
     return (
             <div className="buttons-inner">
                 {buttons.map(({title, theme}) => (
-                    <button
-                        key={theme}
-                        style={{
-                            backgroundColor: themes[theme].backgroundColor,
-                            color: textColor
-                        }}
-                        title={title}
-                        className={ currentTheme === theme ? "button circle-button active-circle" : "button circle-button"}
-                        onClick={() => setCurrentTheme(theme)}/>
+                    <LightTooltip key={theme} title={title}>
+                        <button
+                            style={{
+                                backgroundColor: themes[theme].backgroundColor,
+                                color: textColor
+                            }}
+                            className={ currentTheme === theme ? "button circle-button active-circle" : "button circle-button"}
+                            onClick={() => setCurrentTheme(theme)}/>
+                    </LightTooltip>
                 ))}
             </div>
     );
