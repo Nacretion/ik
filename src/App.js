@@ -7,8 +7,6 @@ import {themes, cards} from "./consts/consts"
 import HomePage from "./pages/HomePage";
 import All from "./pages/All";
 import Setup from "./pages/Setup";
-// import Stories from 'consts-react';
-// import 'consts-react/dist/index.css';
 
 
 
@@ -21,20 +19,6 @@ export default function App() {
 
     // const navigate = useNavigate();
 
-    // const consts = [
-    //     {
-    //
-    //         type: 'image',
-    //         url: 'https://lh3.googleusercontent.com/_X4oEpRu4O-nv0KuFwJQV2zX5SLuwRg9fIM1_-Q29L50zDgRd2eLdEr0ZmLVk_cPLA4',
-    //         duration: 1500,
-    //     },
-    //     {
-    //
-    //         type: 'image',
-    //         url: "https://www.soccerex.com/media/8004/img.jpg?anchor=center&mode=crop&width=750&height=422&rnd=131660981050000000",
-    //         duration: 1500,
-    //     }
-    // ]
 
     const changeTheme = (color, bgColor, heading) => {
         changeTextColor(color)

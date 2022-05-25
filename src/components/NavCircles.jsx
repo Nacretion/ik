@@ -32,7 +32,7 @@ const NavCircles = () => {
     return (
             <div className="buttons-inner">
                 {buttons.map(({title, theme}) => (
-                    <LightTooltip key={theme} title={title}>
+                    <LightTooltip sx={{zIndex:1}} key={theme} title={title}>
                         <button
                             style={{
                                 backgroundColor: themes[theme].backgroundColor,

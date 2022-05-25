@@ -7,7 +7,7 @@ export const themes = [
     {heading: "Спорт/досуг", backgroundColor: "#EFB7B7", color: "#000000"},
     {heading: "Образование", backgroundColor: "#B1E1A2", color: "#000000"},
     {heading: "Юридические услуги", backgroundColor: "#99B898", color: "#ffffff"},
-    {heading: "Ремонт/быт", backgroundColor: "#D7E1F1", color: "#000000"},
+    {heading: "Ремонт/быт", backgroundColor: "#5a9bff", color: "#000000"},
     {heading: "Недвижимость", backgroundColor: "#14B1AB", color: "#ffffff"},
     {heading: "Продукты", backgroundColor: "#FBD46D", color: "#000000"}
 ]
@@ -84,4 +84,13 @@ export const cards = {
         { image: "url('./images/1products.jpg') center"},
         { image: "url('./images/2products.jpg') center"}
     ],
+}
+
+// [0] - month, [1] - quarter, [2] - year
+export const prices = {
+    "default": [600, 500, 400],
+    "photos": [450, 400, 350],
+    "cart": [600, 500, 400],
+    "services": [1250, 1100, 900],
+    "socNetworks": [250, 200, 150]
 }
