@@ -7,6 +7,7 @@ import NavArrows from "../components/UI/NavArrows";
 import {cards} from "../consts/consts";
 import Stories from 'stories-react';
 import 'stories-react/dist/index.css';
+import { useSwipeable } from 'react-swipeable';
 
 import {ReactComponent as CafeIcon} from "../svg/circles/food.svg";
 import {ReactComponent as ProductsIcon} from "../svg/circles/products.svg";
@@ -18,9 +19,62 @@ import {ReactComponent as GymIcon} from "../svg/circles/gym.svg";
 import {ReactComponent as GiftsIcon} from "../svg/circles/gifts.svg";
 import {ReactComponent as AutoIcon} from "../svg/circles/auto.svg";
 import {ReactComponent as RepairIcon} from "../svg/circles/repair.svg";
-export default function HomePage () {
+import {alpha, Button, Menu, MenuItem, styled} from "@mui/material";
 
-    const { heading, textColor, setCurrentTheme, currentTheme, indexes} = useContext(VisibleContext)
+
+const initialStateSwipeable = {
+    delta: '100',
+    preventScrollOnSwipe: false,
+    trackMouse: false,
+    trackTouch: true,
+    rotationAngle: 0,
+    swipeDuration: "200",
+};
+
+const StyledMenu = styled((props) => (
+    <Menu
+        elevation={0}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+        }}
+        {...props}
+    />
+))(({ theme }) => ({
+    '& .MuiPaper-root': {
+        borderRadius: 6,
+        marginTop: theme.spacing(1),
+        minWidth: 180,
+        color:
+            theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+        boxShadow:
+            'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+        '& .MuiMenu-list': {
+            padding: '4px 0',
+        },
+        '& .MuiMenuItem-root': {
+            '& .MuiSvgIcon-root': {
+                fontSize: 18,
+                color: theme.palette.text.secondary,
+                marginRight: theme.spacing(1.5),
+            },
+            '&:active': {
+                backgroundColor: alpha(
+                    theme.palette.primary.main,
+                    theme.palette.action.selectedOpacity,
+                ),
+            },
+        },
+    },
+}));
+
+export default function HomePage() {
+
+    const {heading, textColor, setCurrentTheme, currentTheme, indexes, toNextTheme, toPrevTheme} = useContext(VisibleContext)
 
     const [isModalActive, setIsModalActive] = useState("y")
     const stories = [
@@ -37,31 +91,76 @@ export default function HomePage () {
             duration: 1500,
         }
     ]
+    const handleStoriesEnd = () => {
+        setIsModalActive("")
+        this.forceUpdate()
+    }
+    const handlers = useSwipeable({
+        onSwiped: (eventData) => {
+            if (eventData.dir === "Left") toNextTheme()
+            if (eventData.dir === "Right") toPrevTheme()
+        }},
+        initialStateSwipeable);
 
     const navigate = useNavigate();
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <>
-            <header>
+            <header className="link-heading">
+                <p style={{marginLeft: "5px", textTransform: "none"}} className="heading">ik-Catalog</p>
+                <Button
+                    id="demo-customized-button"
+                    aria-controls={open ? 'demo-customized-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    sx={{transform: "scale(.7)",border: "1px solid #fff"}}
+                    disableElevation
+                    onClick={handleClick}
+                ><ArrowBottom style={{fill: textColor, width: "20px", height: "20px"}} /></Button>
+                <StyledMenu
+                    id="demo-customized-menu"
+                    MenuListProps={{
+                        'aria-labelledby': 'demo-customized-button',
+                    }}
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                >
+                    <MenuItem onClick={handleClose} disableRipple>hjkgkf</MenuItem>
+                    <MenuItem onClick={handleClose} disableRipple>hjkgkf</MenuItem>
+                    <MenuItem onClick={handleClose} disableRipple>hjkgkf</MenuItem>
+                </StyledMenu>
+            </header>
+            <main>
                 <div className="buttons-inner">
                     <div className={"modal " + isModalActive} id="stories1">
                         <Stories
                             onAllStoriesEnd={() => {
-                                setIsModalActive("y")
-                                this.forceUpdate()
+                                handleStoriesEnd()
                             }}
                             width="500px"
                             height="800px"
                             stories={stories}
                         />
                     </div>
-                    <div onClick={() => setIsModalActive("modal-active")} style={{backgroundColor: "#fff", border: "2px solid #fff"}} className="circle-button">
+                    <div onClick={() => setIsModalActive("modal-active")}
+                         style={{backgroundColor: "#fff", border: "2px solid #fff"}} className="circle-button">
                         О НАС
                     </div>
                     <div style={{backgroundColor: "#FF9A76", border: "2px solid #FF9A76"}} className="circle-button">
                         <CafeIcon className="svg"/>
                     </div>
                     <div style={{backgroundColor: "#FBD46D", border: "2px solid #FBD46D"}} className="circle-button">
-                        <ProductsIcon style={{fill:"#935353"}} className="svg"/>
+                        <ProductsIcon style={{fill: "#935353"}} className="svg"/>
                     </div>
                     <div style={{backgroundColor: "#E8445F", border: "2px solid #E8445F"}} className="circle-button">
                         <CosmeticIcon className="svg"/>
@@ -73,13 +172,13 @@ export default function HomePage () {
                         <GiftsIcon className="svg"/>
                     </div>
                     <div style={{backgroundColor: "#EFB7B7", border: "2px solid #EFB7B7"}} className="circle-button">
-                        <GymIcon style={{fill:"#9D65C9"}} className="svg"/>
+                        <GymIcon style={{fill: "#9D65C9"}} className="svg"/>
                     </div>
                     <div style={{backgroundColor: "#669B9C", border: "2px solid #669B9C"}} className="circle-button">
                         <ClinicIcon className="svg"/>
                     </div>
                     <div style={{backgroundColor: "#D7E1F1", border: "2px solid #D7E1F1"}} className="circle-button">
-                        <RepairIcon style={{fill:"#E8505B"}} className="svg"/>
+                        <RepairIcon style={{fill: "#E8505B"}} className="svg"/>
                     </div>
                     <div style={{backgroundColor: "#99B898", border: "2px solid #99B898"}} className="circle-button">
                         <EstateIcon className="svg"/>
@@ -89,21 +188,20 @@ export default function HomePage () {
                     </div>
 
                 </div>
-                <p className="heading" onClick={() => navigate("/setup")}>О нас</p>
-            </header>
-            <main>
                 <div className="link-heading">
                     <p className="heading">{heading}</p>
-                    <NavArrows />
+                    <NavArrows/>
                 </div>
-                <div className="cards-inner">
-                    {cards[currentTheme].slice(indexes[0],indexes[1]).map(({image}) => (
+                <div {...handlers}
+                     className="cards-inner">
+                    {cards[currentTheme].slice(indexes[0], indexes[1]).map(({image}) => (
                         <button
                             key={image}
                             style={{
                                 background: image
                             }}
                             className="card card-cafe">
+                            <div style={{border: "1px solid #fff", color: "rgb(255,255,255)", backgroundColor: "rgba(0,0,0,0.54)", textTransform: "uppercase"}} className="circle-button">Лого</div>
                         </button>
                     ))}
                 </div>
@@ -112,7 +210,7 @@ export default function HomePage () {
             <footer>
                 <NavCircles textColor={textColor} setCurrentTheme={setCurrentTheme}/>
                 <div className="arrow-inner link" onClick={() => navigate("/all")}>
-                    <p className="heading">Все</p>
+                    <p className="heading">Каталог</p>
                     <ArrowBottom
                         style={textColor === "#ffffff" ? {
                             filter: "invert(100%) sepia(99%) saturate(0%) hue-rotate(282deg) brightness(113%) contrast(100%)",

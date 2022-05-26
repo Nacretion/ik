@@ -26,6 +26,7 @@ export default function All() {
             <footer>
                 <NavCircles/>
                 <div className="arrow-inner link" onClick={() => navigate("/")}>
+                    <p className="heading" >Домой</p>
                     <ArrowTop
                         style={textColor === "#ffffff" ? {
                             filter: "invert(100%) sepia(99%) saturate(0%) hue-rotate(282deg) brightness(113%) contrast(100%)",

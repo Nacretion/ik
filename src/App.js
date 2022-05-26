@@ -7,6 +7,7 @@ import {themes, cards} from "./consts/consts"
 import HomePage from "./pages/HomePage";
 import All from "./pages/All";
 import Setup from "./pages/Setup";
+import Error from "./pages/Error";
 
 
 
@@ -16,6 +17,7 @@ export default function App() {
     const [bgColor, changeBgColor] = useState("")
     const [heading, changeHeading] = useState("")
     const [indexes, setIndexes] = useState([0,6])
+
 
     // const navigate = useNavigate();
 
@@ -97,6 +99,7 @@ function Content() {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/all" element={<All/>}/>
                 <Route path="/setup" element={<Setup/>}/>
+                <Route path="*" element={<Error/>}/>
             </Routes>
         </div>
     );

@@ -14,6 +14,12 @@
   font-weight: 100;
   src: local("gothampro"), url(../fonts/gotham-pro/gothampro.ttf) format("truetype")
 }
+@font-face {
+  font-family: "AnimeAce";
+  font-style: normal;
+  font-weight: 100;
+  src: local("AnimeAce"), url(../fonts/AnimeAcev3/AnimeAce.ttf) format("truetype")
+}
 
 * {
   margin: 0;
@@ -83,7 +89,14 @@ header {
 header .heading {
   text-align: end
 }
-header .circle-button {
+
+
+main .buttons-inner {
+  margin-bottom: 5vh;
+  align-self: start;
+}
+
+main .circle-button {
   color: #000;
   display: flex;
   align-items: center;
@@ -93,23 +106,24 @@ header .circle-button {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3), inset 0 0 10px 0 rgba(0, 0, 0, .4);
 
 }
-header .circle-button:hover {
+
+main .circle-button:hover {
   font-size: 12pt;
 }
-header .svg {
+main .svg {
   width: 70%;
   height: 70%;
   fill: #fff;
   transition: .5s;
 }
-header .svg:hover {
+main .svg:hover {
   transform: scale(1.3);
 }
 
 .buttons-inner {
   display: flex;
   gap: 1vh;
-  justify-items: center
+  justify-items: center;
 }
 
 
@@ -171,7 +185,7 @@ main {
   justify-content: space-between;
   gap: 20px;
   width: 20vw;
-  height: 470px
+  height: 470px;
 }
 
 .card-inner .card {
@@ -202,6 +216,9 @@ main {
 }
 
 .card-cafe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-size: cover !important;
   transition: .5s
 }
@@ -227,7 +244,7 @@ main {
 }
 
 footer {
-  margin-top: 45px;
+  margin-top: 10px;
   justify-content: space-between
 }
 
@@ -250,7 +267,12 @@ footer .buttons-inner .circle-button {
 }
 
 .arrow-inner, footer {
-  display: flex
+  display: flex;
+}
+
+.arrow-inner {
+  align-items: center;
+  justify-content: center;
 }
 
 .arrow, .link {
@@ -274,19 +296,35 @@ footer .buttons-inner .circle-button {
 
 @media screen and (max-width: 900px) {
   .cards-inner {
-    grid-gap: 10px
+    grid-gap: 10px;
+    padding: 0 10px;
   }
 
   .card {
     width: 100%;
     height: 20vh
   }
+
+  main .buttons-inner {
+    height: 15vh;
+    display: -webkit-box;
+    padding: 20px 10px;
+    max-width: 100vw;
+    overflow-x: auto;
+    margin: 0;
+  }
+  main .buttons-inner::-webkit-scrollbar {
+    display: none;
+  }
+  main .heading {
+    margin-left: 5px;
+  }
 }
 
 @media screen and (max-aspect-ratio: 9/16) {
   .cards-inner {
     grid-template-columns: 1fr 1fr;
-    max-height: 40vh;
+    height: 55vh;
     overflow-y: auto
   }
 
@@ -295,7 +333,7 @@ footer .buttons-inner .circle-button {
     align-items: center
   }
 
-  .circle-button {
+  footer .circle-button {
     width: 25px !important;
     height: 25px !important
   }
@@ -305,7 +343,7 @@ footer .buttons-inner .circle-button {
   }
 
   .buttons-inner {
-    margin-bottom: 50px
+    margin-bottom: 50px;
   }
 
   .card-inner .card {
