@@ -9,7 +9,7 @@ const Error = () => {
     const [buttonPressed, setButtonPressed] = useState(false)
 
     setTimeout(() => {
-        if(buttonPressed) {
+        if (buttonPressed) {
             setButtonPressed(false)
         }
     }, 2000)
@@ -17,18 +17,19 @@ const Error = () => {
     return (
         <main style={{fontFamily: "AnimeAce"}}>
             <div className={classes.svgContainer}>
-                <Squidward className={classes.svg} />
+                <Squidward className={classes.svg}/>
                 <div>
                     <p className="heading" style={{fontSize: "30pt"}}>404</p>
-                    <p  style={{fontSize: "26pt", marginBottom: "10px"}}>Not Found</p>
+                    <p style={{fontSize: "26pt", marginBottom: "10px"}}>Not Found</p>
                     <p style={{fontSize: "16pt", color: "#00ffc0"}}>такой страницы не существует</p>
-                    <div className={classes.buttonContainer} style={{display: "flex",margin: "20px", marginLeft: "0"}}>
+                    <div className={classes.buttonContainer} style={{display: "flex", margin: "20px", marginLeft: "0"}}>
                         <button className={classes.button + " " + classes.homeButton} onClick={() => navigate("/")}>
                             <p>
                                 домой
                             </p>
                         </button>
-                        <button className={classes.button} onClick={() => setButtonPressed(true)}><p>{buttonPressed? "Упс... Не получится": "сообщить об ошибке"}</p></button>
+                        <button className={classes.button} onClick={() => setButtonPressed(true)}>
+                            <p>{buttonPressed ? "Упс... Не получится" : "сообщить об ошибке"}</p></button>
                     </div>
                 </div>
             </div>

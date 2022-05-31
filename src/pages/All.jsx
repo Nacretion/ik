@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 
 export default function All() {
 
-    const { heading, textColor } = useContext(VisibleContext)
+    const {heading, textColor} = useContext(VisibleContext)
 
     const navigate = useNavigate()
 
@@ -17,7 +17,7 @@ export default function All() {
             <header>
                 <div className="link-heading">
                     <p className="heading">{heading}</p>
-                    <NavArrows />
+                    <NavArrows/>
                 </div>
             </header>
             <main style={{height: "50vh"}}>
@@ -26,7 +26,7 @@ export default function All() {
             <footer>
                 <NavCircles/>
                 <div className="arrow-inner link" onClick={() => navigate("/")}>
-                    <p className="heading" >Домой</p>
+                    <p className="heading">Домой</p>
                     <ArrowTop
                         style={textColor === "#ffffff" ? {
                             filter: "invert(100%) sepia(99%) saturate(0%) hue-rotate(282deg) brightness(113%) contrast(100%)",

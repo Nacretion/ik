@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20px" height="20px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 3000 3000">
+ <defs>
+  <style type="text/css">
+    .fil03 {fill:#2787F5}
+    .fil13 {fill:white}
+  </style>
+ </defs>
+ <g>
+  <metadata/>
+  <g>
+   <circle class="fil03" cx="1517.83" cy="1488.57" r="1142.12"/>
+   <path class="fil13" d="M1538.09 1181.1c-77.58,45.09 -439.03,192.13 -542.42,242.82 -58.96,25.67 -159.21,52.19 -185.32,112.28 17.78,42.49 170.91,92.55 210.25,101.53 131.07,29.92 47.68,83.35 369.69,-137.56 69.79,-47.88 285.69,-212.55 355.91,-212.31 -16.97,109.43 -421.98,359.26 -395.29,452.68 23.29,37.12 393.35,291.24 430.9,305.48 155.25,58.83 127.02,-172.59 148.38,-217.23 10.11,-64.28 73.98,-352.1 87.22,-438.29 11.53,-75.09 22.25,-149.41 31.43,-224.81 11.64,-95.65 21.28,-158.96 -97.02,-136.07l-413.73 151.48z"/>
+  </g>
+ </g>
+</svg>

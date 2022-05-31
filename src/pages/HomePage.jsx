@@ -7,7 +7,7 @@ import NavArrows from "../components/UI/NavArrows";
 import {cards} from "../consts/consts";
 import Stories from 'stories-react';
 import 'stories-react/dist/index.css';
-import { useSwipeable } from 'react-swipeable';
+import {useSwipeable} from 'react-swipeable';
 
 import {ReactComponent as CafeIcon} from "../svg/circles/food.svg";
 import {ReactComponent as ProductsIcon} from "../svg/circles/products.svg";
@@ -22,59 +22,16 @@ import {ReactComponent as RepairIcon} from "../svg/circles/repair.svg";
 import {alpha, Button, Menu, MenuItem, styled} from "@mui/material";
 
 
-const initialStateSwipeable = {
-    delta: '100',
-    preventScrollOnSwipe: false,
-    trackMouse: false,
-    trackTouch: true,
-    rotationAngle: 0,
-    swipeDuration: "200",
-};
 
-const StyledMenu = styled((props) => (
-    <Menu
-        elevation={0}
-        anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-        }}
-        transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-        }}
-        {...props}
-    />
-))(({ theme }) => ({
-    '& .MuiPaper-root': {
-        borderRadius: 6,
-        marginTop: theme.spacing(1),
-        minWidth: 180,
-        color:
-            theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
-        boxShadow:
-            'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
-        '& .MuiMenu-list': {
-            padding: '4px 0',
-        },
-        '& .MuiMenuItem-root': {
-            '& .MuiSvgIcon-root': {
-                fontSize: 18,
-                color: theme.palette.text.secondary,
-                marginRight: theme.spacing(1.5),
-            },
-            '&:active': {
-                backgroundColor: alpha(
-                    theme.palette.primary.main,
-                    theme.palette.action.selectedOpacity,
-                ),
-            },
-        },
-    },
-}));
 
 export default function HomePage() {
 
-    const {heading, textColor, setCurrentTheme, currentTheme, indexes, toNextTheme, toPrevTheme} = useContext(VisibleContext)
+    const {
+        heading, textColor, setCurrentTheme,
+        currentTheme, indexes, toNextTheme,
+        toPrevTheme, setCarousel, bgColor,
+        initialStateSwipeable
+    } = useContext(VisibleContext)
 
     const [isModalActive, setIsModalActive] = useState("y")
     const stories = [
@@ -96,10 +53,11 @@ export default function HomePage() {
         this.forceUpdate()
     }
     const handlers = useSwipeable({
-        onSwiped: (eventData) => {
-            if (eventData.dir === "Left") toNextTheme()
-            if (eventData.dir === "Right") toPrevTheme()
-        }},
+            onSwiped: (eventData) => {
+                if (eventData.dir === "Left") toNextTheme()
+                if (eventData.dir === "Right") toPrevTheme()
+            }
+        },
         initialStateSwipeable);
 
     const navigate = useNavigate();
@@ -112,6 +70,48 @@ export default function HomePage() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const StyledMenu = styled((props) => (
+        <Menu
+            elevation={0}
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+            }}
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            {...props}
+
+        />
+    ))(({theme}) => ({
+        '& .MuiPaper-root': {
+            borderRadius: 6,
+            marginTop: theme.spacing(1),
+            minWidth: 180,
+            color: textColor,
+            backgroundColor: bgColor,
+            boxShadow:
+                'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+            '& .MuiMenu-list': {},
+            '& .MuiMenuItem-root': {
+                '& .MuiSvgIcon-root': {
+                    fontSize: 18,
+                    color: theme.palette.text.secondary,
+                    marginRight: theme.spacing(1.5),
+                },
+                '&:active': {
+                    backgroundColor: alpha(
+                        theme.palette.primary.main,
+                        theme.palette.action.selectedOpacity,
+                    ),
+                },
+                '&:hover': {
+                    backgroundColor: alpha(textColor === "#ffffff" ? "#000" : "#fff", 0.3),
+                },
+            },
+        },
+    }));
 
     return (
         <>
@@ -122,10 +122,10 @@ export default function HomePage() {
                     aria-controls={open ? 'demo-customized-menu' : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
-                    sx={{transform: "scale(.7)",border: "1px solid #fff"}}
+                    sx={{transform: "scale(.7)", border: "1px solid #fff"}}
                     disableElevation
                     onClick={handleClick}
-                ><ArrowBottom style={{fill: textColor, width: "20px", height: "20px"}} /></Button>
+                ><ArrowBottom style={{fill: textColor, width: "20px", height: "20px"}}/></Button>
                 <StyledMenu
                     id="demo-customized-menu"
                     MenuListProps={{
@@ -135,9 +135,16 @@ export default function HomePage() {
                     open={open}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={handleClose} disableRipple>hjkgkf</MenuItem>
-                    <MenuItem onClick={handleClose} disableRipple>hjkgkf</MenuItem>
-                    <MenuItem onClick={handleClose} disableRipple>hjkgkf</MenuItem>
+                    <MenuItem onClick={() => {
+                        setCarousel(["card1", "card2", "card3"])
+                        navigate("/setup")
+                    }} disableRipple>Создать сайт</MenuItem>
+                    <MenuItem onClick={() => {
+                        setCarousel(["card1", "card3", "card2"])
+                        navigate("/setup")
+                    }} disableRipple>Реклама на портале</MenuItem>
+                    <MenuItem onClick={handleClose} disableRipple>Наши услуги</MenuItem>
+                    {/*<MenuItem onClick={handleClose} disableRipple>Город</MenuItem>*/}
                 </StyledMenu>
             </header>
             <main>
@@ -201,7 +208,13 @@ export default function HomePage() {
                                 background: image
                             }}
                             className="card card-cafe">
-                            <div style={{border: "1px solid #fff", color: "rgb(255,255,255)", backgroundColor: "rgba(0,0,0,0.54)", textTransform: "uppercase"}} className="circle-button">Лого</div>
+                            <div style={{
+                                border: "1px solid #fff",
+                                color: "rgb(255,255,255)",
+                                backgroundColor: "rgba(0,0,0,0.54)",
+                                textTransform: "uppercase"
+                            }} className="circle-button">Лого
+                            </div>
                         </button>
                     ))}
                 </div>

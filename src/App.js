@@ -3,12 +3,12 @@ import './styles/App.scss';
 import './styles/rootAnimation.css';
 import {VisibleContext} from "./context";
 import {Route, Routes, useLocation} from "react-router-dom";
-import {themes, cards} from "./consts/consts"
+import {cards, themes} from "./consts/consts"
 import HomePage from "./pages/HomePage";
 import All from "./pages/All";
 import Setup from "./pages/Setup";
 import Error from "./pages/Error";
-
+import * as emailjs from "emailjs-com";
 
 
 export default function App() {
@@ -16,11 +16,21 @@ export default function App() {
     const [textColor, changeTextColor] = useState("")
     const [bgColor, changeBgColor] = useState("")
     const [heading, changeHeading] = useState("")
-    const [indexes, setIndexes] = useState([0,6])
+    const [indexes, setIndexes] = useState([0, 6])
+    const [carousel, setCarousel] = useState(["card1", "card2", "card3"])
+
+    emailjs.init("UbTkYoyOv1ULjHUSm");
 
 
-    // const navigate = useNavigate();
 
+    const initialStateSwipeable = {
+        delta: '100',
+        preventScrollOnSwipe: false,
+        trackMouse: false,
+        trackTouch: true,
+        rotationAngle: 0,
+        swipeDuration: "200",
+    };
 
     const changeTheme = (color, bgColor, heading) => {
         changeTextColor(color)
@@ -37,8 +47,7 @@ export default function App() {
     const toPrevTheme = () => {
         if (indexes[0] !== 0 && cards[currentTheme].length > 6) {
             setIndexes([indexes[0] - 6, indexes[1] - 6])
-        }
-        else if (currentTheme > 0) setCurrentTheme(currentTheme - 1)
+        } else if (currentTheme > 0) setCurrentTheme(currentTheme - 1)
         else setCurrentTheme(10)
     }
     const toNextTheme = () => {
@@ -68,7 +77,10 @@ export default function App() {
                 themes,
                 currentTheme,
                 bgColor,
-                indexes
+                indexes,
+                carousel,
+                setCarousel,
+                initialStateSwipeable
             }}>
                 <Content/>
             </VisibleContext.Provider>
