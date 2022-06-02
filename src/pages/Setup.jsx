@@ -7,16 +7,15 @@ import {useNavigate} from "react-router-dom";
 import NavCircles from "../components/NavCircles";
 import CheckBox from "../components/UI/CheckBox";
 import {prices} from "../consts/consts";
-import {InputAdornment, TextField} from "@mui/material";
+import {alpha, Button, ButtonGroup, InputAdornment, Modal, TextField} from "@mui/material";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import {ReactComponent as VKIcon} from "../svg/socNetworks/VK.svg";
 import {ReactComponent as WhatsAppIcon} from "../svg/socNetworks/WhatsApp.svg";
 import {ReactComponent as TelegramIcon} from "../svg/socNetworks/Telegram.svg";
 import {useSwipeable} from "react-swipeable";
-import * as emailjs from "emailjs-com";
 
 
 export default function Setup({funcPrev}) {
@@ -62,20 +61,25 @@ export default function Setup({funcPrev}) {
         initialStateSwipeable);
 
 
-    const sendEmail = () => {
-        emailjs.send("service_wtoob9m", "template_k3gucfa", {
-            from_name: "Никита Ананев",
-            to_name: "Игорь Т",
-            message: "Дарова",
-            reply_to: "хз че сюда писать ",
-        }).then(function (response) {
-            console.log('SUCCESS!', response.status, response.text);
-        }, function (error) {
-            console.log('FAILED...', error);
-        });
-    }
+    const [modalOpen, setModalOpen] = React.useState(false);
+    const handleModalOpen = () => setModalOpen(true);
+    const handleModalClose = () => setModalOpen(false);
+
     return (
         <>
+            <Modal
+                open={modalOpen}
+                onClose={handleModalClose}
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                }}>
+                {carousel[1] === "card3" ? <Card3Modal feedBack={feedback} toHomePage={toHomePage}/> :
+                    carousel[1] === "card2" ? <Card2Modal/> : <Card1Modal/>
+
+                }
+            </Modal>
             <header>
                 <div className="link-heading">
                     <ArrowBack style={
@@ -241,9 +245,117 @@ export default function Setup({funcPrev}) {
                     </div>
                     <NavCircles/>
                 </div>
-                <button style={{borderColor: textColor, color: textColor}} className="submit"><p>Отправить запрос</p>
+                <button style={{borderColor: textColor, color: textColor}} className="submit" onClick={handleModalOpen}>
+                    <p>Отправить запрос</p>
                 </button>
             </footer>
         </>
     );
 };
+const Card3Modal = ({toHomePage, feedBack, }) => {
+
+    const {textColor, bgColor} = useContext(VisibleContext)
+    const [vk, setVk] = useState(false)
+    const [whatsUp, setWhatsUp] = useState(false)
+    const [telegram, setTelegram] = useState(false)
+
+
+    return (
+        <>
+            <div style={{
+                backgroundColor: alpha(bgColor, .9),
+            }} className="modalCard">
+                <TextField
+                    label="Имя"
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <AccountCircleIcon/>
+                            </InputAdornment>
+                        ),
+                    }}
+                    size="small"
+                    variant="filled"
+                    sx={{transform: "scale(.8)"}}
+                />
+                <TextField
+                    label="Телефон"
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <LocalPhoneIcon/>
+                            </InputAdornment>
+                        ),
+                    }}
+                    size="small"
+                    variant="filled"
+                    sx={{transform: "scale(.8)"}}
+                />
+                {toHomePage ?
+                <TextField
+                    label="Адрес сайта"
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <LocationOnIcon/>
+                            </InputAdornment>
+                        ),
+                    }}
+                    size="small"
+                    variant="filled"
+                    sx={{transform: "scale(.8)"}}
+                /> : ""
+                }
+                {feedBack ?
+                    <>
+                        <p className="heading">мессенджер в каталог</p>
+                        <div style={{display:"flex", gap: "10px", transform: "scale(1.3)"}}>
+                            <CheckBox
+                                id={"check12"} checked={vk}
+                                onChange={e => {
+                                    setVk(e.target.checked)
+                                }}><VKIcon/></CheckBox>
+                            <CheckBox
+                                id={"check13"} checked={whatsUp}
+                                onChange={e => {
+                                    setWhatsUp(e.target.checked)
+                                }}><WhatsAppIcon/></CheckBox>
+                            <CheckBox
+                                id={"check14"} checked={telegram}
+                                onChange={e => {
+                                    setTelegram(e.target.checked)
+                                }}><TelegramIcon/></CheckBox>
+                        </div>
+                    </> : ""
+                }
+
+                <Button style={{
+                    color: textColor,
+                    borderBottom: "1px solid " + textColor,
+                    paddingBottom: "1px",
+                    marginTop: "10px"
+                }}>Отправить заявку</Button>
+            </div>
+        </>
+    )
+}
+
+const Card2Modal = () => {
+
+    const {textColor, bgColor} = useContext(VisibleContext)
+
+    return (
+
+        <div style={{
+            backgroundColor: alpha(bgColor, .9),
+        }} className="modalCard">
+
+        </div>
+    )
+}
+const Card1Modal = () => {
+    return (
+        <>
+        </>
+    )
+}

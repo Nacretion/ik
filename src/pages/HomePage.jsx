@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import NavCircles from "../components/NavCircles";
 import {ReactComponent as ArrowBottom} from "../svg/arrow-bottom.svg";
 import {useNavigate} from "react-router-dom";
@@ -8,7 +8,6 @@ import {cards} from "../consts/consts";
 import Stories from 'stories-react';
 import 'stories-react/dist/index.css';
 import {useSwipeable} from 'react-swipeable';
-
 import {ReactComponent as CafeIcon} from "../svg/circles/food.svg";
 import {ReactComponent as ProductsIcon} from "../svg/circles/products.svg";
 import {ReactComponent as CosmeticIcon} from "../svg/circles/cosmetic.svg";
@@ -19,12 +18,25 @@ import {ReactComponent as GymIcon} from "../svg/circles/gym.svg";
 import {ReactComponent as GiftsIcon} from "../svg/circles/gifts.svg";
 import {ReactComponent as AutoIcon} from "../svg/circles/auto.svg";
 import {ReactComponent as RepairIcon} from "../svg/circles/repair.svg";
-import {alpha, Button, Menu, MenuItem, styled} from "@mui/material";
+import {alpha, Button, Menu, MenuItem, Modal, styled} from "@mui/material";
 
 
+const stories = [
+    {
 
+        type: 'image',
+        url: 'https://lh3.googleusercontent.com/_X4oEpRu4O-nv0KuFwJQV2zX5SLuwRg9fIM1_-Q29L50zDgRd2eLdEr0ZmLVk_cPLA4',
+        duration: 1500,
+    },
+    {
 
-export default function HomePage() {
+        type: 'image',
+        url: "https://www.soccerex.com/media/8004/img.jpg?anchor=center&mode=crop&width=750&height=422&rnd=131660981050000000",
+        duration: 1500,
+    }
+]
+
+export default function HomePage(options) {
 
     const {
         heading, textColor, setCurrentTheme,
@@ -33,43 +45,37 @@ export default function HomePage() {
         initialStateSwipeable
     } = useContext(VisibleContext)
 
-    const [isModalActive, setIsModalActive] = useState("y")
-    const stories = [
-        {
-
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/_X4oEpRu4O-nv0KuFwJQV2zX5SLuwRg9fIM1_-Q29L50zDgRd2eLdEr0ZmLVk_cPLA4',
-            duration: 1500,
-        },
-        {
-
-            type: 'image',
-            url: "https://www.soccerex.com/media/8004/img.jpg?anchor=center&mode=crop&width=750&height=422&rnd=131660981050000000",
-            duration: 1500,
-        }
-    ]
-    const handleStoriesEnd = () => {
-        setIsModalActive("")
-        this.forceUpdate()
-    }
     const handlers = useSwipeable({
             onSwiped: (eventData) => {
                 if (eventData.dir === "Left") toNextTheme()
                 if (eventData.dir === "Right") toPrevTheme()
             }
         },
-        initialStateSwipeable);
+        initialStateSwipeable)
 
-    const navigate = useNavigate();
+
+
+    const [modalOpen, setModalOpen] = React.useState(false);
+    const handleModalOpen = () => setModalOpen(true);
+    const handleModalClose = () => setModalOpen(false);
+
+    const handleStoriesEnd = () => {
+        handleModalClose()
+        this.forceUpdate()
+    }
+
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+    const open = Boolean(anchorEl)
+    const navigate = useNavigate()
+
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-    };
+    }
     const handleClose = () => {
-        setAnchorEl(null);
-    };
+        setAnchorEl(null)
+    }
     const StyledMenu = styled((props) => (
         <Menu
             elevation={0}
@@ -112,7 +118,6 @@ export default function HomePage() {
             },
         },
     }));
-
     return (
         <>
             <header className="link-heading">
@@ -149,17 +154,25 @@ export default function HomePage() {
             </header>
             <main>
                 <div className="buttons-inner">
-                    <div className={"modal " + isModalActive} id="stories1">
+                    <Modal
+                        open={modalOpen}
+                        onClose={handleModalClose}
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center" }}
+                    >
                         <Stories
                             onAllStoriesEnd={() => {
                                 handleStoriesEnd()
                             }}
+                            onClick={(e) => e.preventDefault()}
                             width="500px"
                             height="800px"
                             stories={stories}
                         />
-                    </div>
-                    <div onClick={() => setIsModalActive("modal-active")}
+                    </Modal>
+                    <div onClick={() => handleModalOpen()}
                          style={{backgroundColor: "#fff", border: "2px solid #fff"}} className="circle-button">
                         О НАС
                     </div>
