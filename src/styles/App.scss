@@ -379,6 +379,7 @@ footer .buttons-inner .circle-button {
   padding: 10px 0 10px 30px;
   text-align: left;
   font-size: 10pt;
+  margin-left: 10px;
 
   label {
     cursor: pointer;
@@ -533,5 +534,57 @@ footer .buttons-inner .circle-button {
     position:absolute;
     color: white;
     left:-10px;
+  }
+  .styled-input--square .styled-input-single + .styled-input-single:after {
+     content:""!important;
+   }
+}
+
+.preview {
+  width: 70%;
+  height: 80px;
+  background-color: #fff;
+
+  border-radius: 20px;
+  margin: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#site--preview{
+  width: 85%;
+  margin-top: 20px;
+  height: 100px;
+  cursor: pointer;
+  &:before{
+    content: "Пример:";
+    font-size: 10pt;
+    color: #000;
+    position: absolute;
+    left: 13%;
+    top: 13%;
+  }
+  &:after{
+    content: "Открыть";
+    font-size: 10pt;
+    color: #000;
+  }
+}
+#price--preview {
+  &:before{
+    content: "В месяц:";
+    font-size: 6pt;
+    color: #000;
+    position: absolute;
+    top: 27%;
+    text-transform: uppercase;
+    opacity: .7;
+  }
+  p {
+    position: relative;
+    top: -10%;
+    font-size: 20pt;
   }
 }

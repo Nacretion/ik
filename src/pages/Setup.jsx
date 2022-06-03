@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import NavCircles from "../components/NavCircles";
 import CheckBox from "../components/UI/CheckBox";
 import {prices} from "../consts/consts";
-import {alpha, Button, ButtonGroup, InputAdornment, Modal, TextField} from "@mui/material";
+import {alpha, Button, InputAdornment, Modal, TextField, ToggleButton, ToggleButtonGroup} from "@mui/material";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -35,14 +35,11 @@ export default function Setup({funcPrev}) {
     const navigate = useNavigate();
     useEffect(() => {
         if (carousel[1] === "card2") {
-            setCurrentPrice(
-                prices.default[0] +
-                photos * prices.photos[0] +
-                cart * prices.cart[0] +
-                menu * prices.services[0] +
-                networks * prices.socNetworks[0])
+
+            setCurrentPrice(handleOptionsChanged(0))
         }
     }, [photos, cart, menu, networks, carousel])
+
 
     const labelStyle = {
         color: textColor,
@@ -59,7 +56,13 @@ export default function Setup({funcPrev}) {
             }
         },
         initialStateSwipeable);
-
+    const handleOptionsChanged = (period) => {
+        return prices.default[period] +
+            photos * prices.photos[period] +
+            cart * prices.cart[period] +
+            menu * prices.services[period] +
+            networks * prices.socNetworks[period]
+    }
 
     const [modalOpen, setModalOpen] = React.useState(false);
     const handleModalOpen = () => setModalOpen(true);
@@ -76,7 +79,7 @@ export default function Setup({funcPrev}) {
                     justifyContent: "center"
                 }}>
                 {carousel[1] === "card3" ? <Card3Modal feedBack={feedback} toHomePage={toHomePage}/> :
-                    carousel[1] === "card2" ? <Card2Modal/> : <Card1Modal/>
+                    carousel[1] === "card2" ? <Card2Modal currentPrice={(period) => handleOptionsChanged(period)}/> : <Card1Modal/>
 
                 }
             </Modal>
@@ -119,10 +122,9 @@ export default function Setup({funcPrev}) {
                          onClick={() => setCarousel(["card1", "card2", "card3"])}>
                         <p>разработать сайт</p>
                         <div className="card">
+                            <div className="preview" id="site--preview">
+                            </div>
                             <div className="styled-input-container styled-input--square">
-                                <div className="">
-                                    ioooo
-                                </div>
                                 <CheckBox
                                     id="check1" disabled checked readOnly>Стилизация сайта под
                                     дизайн компании</CheckBox>
@@ -252,7 +254,7 @@ export default function Setup({funcPrev}) {
         </>
     );
 };
-const Card3Modal = ({toHomePage, feedBack, }) => {
+const Card3Modal = ({toHomePage, feedBack,}) => {
 
     const {textColor, bgColor} = useContext(VisibleContext)
     const [vk, setVk] = useState(false)
@@ -292,24 +294,24 @@ const Card3Modal = ({toHomePage, feedBack, }) => {
                     sx={{transform: "scale(.8)"}}
                 />
                 {toHomePage ?
-                <TextField
-                    label="Адрес сайта"
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <LocationOnIcon/>
-                            </InputAdornment>
-                        ),
-                    }}
-                    size="small"
-                    variant="filled"
-                    sx={{transform: "scale(.8)"}}
-                /> : ""
+                    <TextField
+                        label="Адрес сайта"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <LocationOnIcon/>
+                                </InputAdornment>
+                            ),
+                        }}
+                        size="small"
+                        variant="filled"
+                        sx={{transform: "scale(.8)"}}
+                    /> : ""
                 }
                 {feedBack ?
                     <>
                         <p className="heading">мессенджер в каталог</p>
-                        <div style={{display:"flex", gap: "10px", transform: "scale(1.3)"}}>
+                        <div style={{display: "flex", gap: "10px", transform: "scale(1.3)"}}>
                             <CheckBox
                                 id={"check12"} checked={vk}
                                 onChange={e => {
@@ -340,16 +342,90 @@ const Card3Modal = ({toHomePage, feedBack, }) => {
     )
 }
 
-const Card2Modal = () => {
+const Card2Modal = ({currentPrice}) => {
 
     const {textColor, bgColor} = useContext(VisibleContext)
+
+    const [alignment, setAlignment] = React.useState('0');
+    const [pageOnOurSite, setPageOnOurSite] = React.useState(false);
+    const [domain, setDomain] = React.useState(false);
+
+    const handleChange = (event, newAlignment) => {
+        setAlignment(newAlignment);
+    };
 
     return (
 
         <div style={{
             backgroundColor: alpha(bgColor, .9),
         }} className="modalCard">
+            <ToggleButtonGroup
+                color="primary"
+                value={alignment}
+                exclusive
+                onChange={handleChange}
+                size="small"
+            >
+                <ToggleButton value="0">Месяц</ToggleButton>
+                <ToggleButton value="1">Квартал</ToggleButton>
+                <ToggleButton value="2">Год</ToggleButton>
+            </ToggleButtonGroup>
+            <div className="preview" id="price--preview">
+                <p>{currentPrice(parseInt(alignment))} &#8381;</p>
+            </div>
+            <div className="styled-input--square">
+                <CheckBox
+                    id={"check15"} checked={pageOnOurSite}
+                    onChange={e => {
+                        setPageOnOurSite(e.target.checked)
+                    }}>
+                    Ваша страница на нашем сайте <br/>
+                    <span style={{color: "#fff"}}>k89.ru/имя сайта</span>
+                </CheckBox>
+                <CheckBox
+                    id={"check16"} checked={domain}
+                    onChange={e => {
+                        setDomain(e.target.checked)
+                    }}>Отдельный адрес сайта, <br/>домен, размещение</CheckBox>
+            </div>
 
+            <TextField
+                fullWidth
+                label="Название компании"
+                size="small"
+                variant="filled"
+                sx={{transform: "scale(.8)"}}/>
+            <TextField
+                fullWidth
+                label="Имя"
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <AccountCircleIcon/>
+                        </InputAdornment>
+                    ),
+                }}
+                size="small"
+                variant="filled"
+                sx={{transform: "scale(.8)"}}
+            />
+            <TextField
+                fullWidth
+                label="Телефон"
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <LocalPhoneIcon/>
+                        </InputAdornment>
+                    ),
+                }}
+                size="small"
+                variant="filled"
+                sx={{transform: "scale(.8)"}}
+            />
+            <button style={{borderColor: textColor, color: textColor, width: "80%", marginTop: "5px"}} className="submit">
+                <p style={{margin:"0"}}>Отправить запрос</p>
+            </button>
         </div>
     )
 }
