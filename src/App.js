@@ -8,7 +8,6 @@ import HomePage from "./pages/HomePage";
 import All from "./pages/All";
 import Setup from "./pages/Setup";
 import Error from "./pages/Error";
-import * as emailjs from "emailjs-com";
 
 
 export default function App() {
@@ -18,8 +17,6 @@ export default function App() {
     const [heading, changeHeading] = useState("")
     const [indexes, setIndexes] = useState([0, 6])
     const [carousel, setCarousel] = useState(["card1", "card2", "card3"])
-
-    emailjs.init("UbTkYoyOv1ULjHUSm");
 
 
 
@@ -60,14 +57,9 @@ export default function App() {
         }
     }
 
-    function listenWheelEvent(event) {
-        event.deltaY > 0 ?
-            toNextTheme()
-            : toPrevTheme()
-    }
 
     return (
-        <div onWheel={listenWheelEvent.bind(this)} className="App" style={{color: textColor, backgroundColor: bgColor}}>
+        <div className="App" style={{color: textColor}}>
             <VisibleContext.Provider value={{
                 heading,
                 textColor,

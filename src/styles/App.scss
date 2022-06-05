@@ -1,590 +1,70 @@
-@keyframes rotate-shadow {
-  from {
-    transform: scale(1)
-  }
-
-  to {
-    transform: scale(1.3)
-  }
-}
-
-@font-face {
-  font-family: "gothampro";
-  font-style: normal;
-  font-weight: 100;
-  src: local("gothampro"), url(../fonts/gotham-pro/gothampro.ttf) format("truetype")
-}
-
-@font-face {
-  font-family: "AnimeAce";
-  font-style: normal;
-  font-weight: 100;
-  src: local("AnimeAce"), url(../fonts/AnimeAcev3/AnimeAce.ttf) format("truetype")
-}
-
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box
 }
-
-button {
-  outline: 0;
-  border: 0;
-  background-color: #fff
-}
-
-.circle-button {
-  width: 67px;
-  height: 67px;
-  border-radius: 100%
-}
-
-.m-left {
-  margin-left: .5vw
-}
-
-.m-right {
-  margin-right: .5vw
-}
-
-.heading, .submit {
-  text-transform: uppercase;
-  font-size: 20pt
-}
-
-.submit {
-  height: 5vh;
-  width: 300px;
-  border: 1px solid;
-  background-color: transparent;
-  letter-spacing: 2px;
-  font-size: 14pt
-}
-
-.submit:hover {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, .37)
-}
-
-.App, header {
-  display: flex;
-  align-items: center
-}
-
 .App {
-  font-family: "gothampro", sans-serif;
-  flex-direction: column;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  font-size: 9.14pt;
-  transition: background-color .5s, color .5s
-}
-
-header {
-  justify-content: space-between;
-  width: 100%
-}
-
-header .heading {
-  text-align: end
-}
-
-
-main .buttons-inner {
-  margin-bottom: 5vh;
-  align-self: start;
-}
-
-main .circle-button {
-  color: #000;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: .5s;
-  cursor: pointer;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3), inset 0 0 10px 0 rgba(0, 0, 0, .4);
-
+  font-family: "Gotham Pro", sans-serif;
+  max-height: 100vh;
+  overflow-y: hidden;
 }
-
-main .circle-button:hover {
-  font-size: 12pt;
-}
-
-main .svg {
-  width: 70%;
-  height: 70%;
-  fill: #fff;
-  transition: .5s;
-}
-
-main .svg:hover {
-  transform: scale(1.3);
-}
-
-.buttons-inner {
-  display: flex;
-  gap: 1vh;
-  justify-items: center;
-}
-
-
-main {
-  margin-top: 20px;
-  min-width: 55vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.cards-inner, .cards-wrapper {
-  margin: 2vh 0;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 100%;
-  grid-gap: 10px;
-}
-
-.cards-wrapper .card1 {
-  transform: translateX(-20vw);
-  transition: .5s;
-  z-index: 1;
-  opacity: 0.5;
-}
-
-.cards-wrapper .card3 {
-  transform: translateX(20vw);
-  transition: .5s;
-  z-index: 1;
-  opacity: 0.5;
-}
-
-
-.cards-wrapper .card2 {
-  transform: scale(1.3);
-  transition: .5s;
-  z-index: 999;
-}
-
-.cards-wrapper .card2 .card:hover {
-  box-shadow: none;
-  cursor: default
-
-}
-
-.cards-wrapper .bg {
-}
-
-.card-inner {
-  position: absolute;
-  font-size: 18pt;
+.heading {
   text-transform: uppercase;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  height: 470px;
-}
-
-.card-inner .card {
-  background-color: #fff;
-  width: 280px;
-  height: 680px;
-  padding: 10px 20px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-.cards-inner {
-  grid-template-rows: 1fr 1fr;
-}
-
-.card {
-  cursor: pointer;
-  width: 400px;
-  height: 200px;
-  border-radius: 10px
-}
-
-.card-add {
-  font-size: 9pt
-}
-
-.card-cafe {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover !important;
-  transition: .5s
-}
-
-.card:hover {
-  box-shadow: inset 0 0 10vw 2px rgba(0, 0, 0, .58)
+  font-size: 20pt;
 }
 
 .link-heading {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.icon-contain, .link-heading, footer {
-  align-items: center;
-  width: 100%
-}
-
-.icon-contain {
-  height: 100%;
+header, footer {
   display: flex;
-  justify-content: center
+  position: fixed;
+  justify-content: space-between;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 10px 10vw;
+  height: fit-content;
+}
+
+header {
+  top: 0;
+  flex-direction: column;
+}
+
+main {
+  position: relative;
+  padding: 25vh 10vw 15vh 10vw;
+  overflow-y: auto;
+  min-height: 100vh;
+  background-color: #ffffffB3;
+  left: 0;
+  right: 0;
+  box-sizing:border-box;
+
+  .link-heading {
+    margin: 10px 0;
+  }
 }
 
 footer {
-  margin-top: 10px;
-  justify-content: space-between
-}
-
-footer .buttons-inner .circle-button {
-  height: 25px;
-  width: 25px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .27), inset 0 0 10px 0 rgba(0, 0, 0, .27);
-  transition: transform .5s, margin .5s, box-shadow .5s
-}
-
-.active-circle, footer .buttons-inner .circle-button:hover {
-  transform: scale(1.3);
-  margin: 0 5px;
-  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, .27), inset 0 -10px 10px 0 rgba(0, 0, 0, .2);
-}
-
-.active-circle {
-  box-shadow: inset 10px 0 15px 0 rgba(0, 0, 0, .27);
-  animation: .2s rotate-shadow ease
-}
-
-.arrow-inner, footer {
-  display: flex;
-}
-
-.arrow-inner {
+  height: 100px;
   align-items: center;
-  justify-content: center;
+  bottom: 0;
 }
-
-.arrow, .link {
-  cursor: pointer
+.arrow-inner {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  gap: 10px;
 }
 
 .arrow {
-  height: 30px
+  height: 30px;
 }
 
-@media screen and (max-width: 1919px) {
-  .cards-inner {
-    grid-gap: 20px
-  }
-
-  .card {
-    width: 100%;
-    height: 20vh
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .cards-inner {
-    grid-gap: 10px;
-    padding: 0 10px;
-  }
-
-  .card {
-    width: 100%;
-    height: 20vh
-  }
-
-  main .buttons-inner {
-    height: 15vh;
-    display: -webkit-box;
-    padding: 20px 10px;
-    max-width: 100vw;
-    overflow-x: auto;
-    margin: 0;
-  }
-  main .buttons-inner::-webkit-scrollbar {
-    display: none;
-  }
-  main .heading {
-    margin-left: 5px;
-  }
-}
-
-@media screen and (max-aspect-ratio: 9/16) {
-  .cards-inner {
-    grid-template-columns: 1fr 1fr;
-    height: 55vh;
-    overflow-y: auto
-  }
-
-  .card1, .card3 {
-    display: none;
-  }
-
-  .card2 .card {
-    width: 60vw !important;
-    height: 60vh !important;
-  }
-
-  label {
-    font-size: 8pt !important;
-  }
-
-
-  footer {
-    flex-direction: column;
-    align-items: center
-  }
-
-  footer .circle-button {
-    width: 25px !important;
-    height: 25px !important
-  }
-
-  .heading {
-    font-size: 18pt
-  }
-
-  .buttons-inner {
-    margin-bottom: 50px;
-  }
-
-  .card-inner .card {
-    width: 200px;
-    height: 360px;
-  }
-  .card-inner {
-    height: 450px;
-  }
-}
-
-.styled-input-single {
-  color: black;
-  position: relative;
-  padding: 10px 0 10px 30px;
-  text-align: left;
-  font-size: 10pt;
-  margin-left: 10px;
-
-  label {
-    cursor: pointer;
-
-    &:before,
-    &:after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      border-radius: 50%;
-    }
-
-    &:before {
-      left: 0;
-      width: 15px;
-      height: 15px;
-      margin: -8px -2px 0;
-      background-color: #fff;
-      border: 1px solid #fff;
-      box-shadow: 0 0 1px #fff;
-    }
-
-    &:after {
-      left: 2px;
-      width: 9px;
-      height: 9px;
-      margin: -4px 0 0;
-      opacity: 0;
-      background: #125374;
-      transform: translate3d(-40px, 0, 0) scale(0.5);
-      transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-    }
-  }
-
-  input[type="radio"],
-  input[type="checkbox"] {
-    position: absolute;
-    top: 0;
-    left: -9999px;
-    visibility: hidden;
-
-    &:checked + label {
-      &:before {
-      }
-
-      &:after {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-      }
-    }
-  }
-}
-
-.styled-input--square {
-  label {
-    &:before,
-    &:after {
-      border-radius: 10%;
-    }
-  }
-}
-
-.styled-input--rounded {
-  label {
-    &:before {
-      border-radius: 10px;
-    }
-
-    &:after {
-      border-radius: 6px;
-    }
-  }
-}
-
-.styled-input--diamond {
-  .styled-input-single {
-    padding-left: 45px;
-  }
-
-  label {
-    &:before,
-    &:after {
-      border-radius: 0;
-    }
-
-    &:before {
-      transform: rotate(45deg);
-    }
-  }
-
-  input[type="radio"],
-  input[type="checkbox"] {
-
-    &:checked + label {
-      &:after {
-        transform: rotate(45deg);
-        opacity: 1;
-      }
-    }
-  }
-}
-
-.styled-input-single--disabled {
-  label:after {
-    border-radius: 50%;
-  }
-
-}
-
-.modal {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  left: 0;
-  top: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background-color: #00000060;
-  width: 100vw;
-  height: 100vh;
-}
-
-.modal-active {
-  display: flex !important;
-  z-index: 999;
-}
-
-.modalCard {
-  transform: scale(1.7);
-  width: 300px;
-  border-radius: 20px;
+.storiesContainer {
   display: flex;
-  flex-direction: column;
-  padding: 20px 20px;
-  align-items: center;
-  outline: none;
-
-  p {
-    margin-top: 10px;
-    text-align: center;
-    font-size: 10pt;
-    font-family: "gothampro", sans-serif;
-  }
-
-  .styled-input-single {
-    margin-left: 5px;
-    padding: 7px 0 1px 20px !important;
-  }
-  .styled-input-single + .styled-input-single:after {
-    content:"|";
-    position:absolute;
-    color: white;
-    left:-10px;
-  }
-  .styled-input--square .styled-input-single + .styled-input-single:after {
-     content:""!important;
-   }
-}
-
-.preview {
-  width: 70%;
-  height: 80px;
-  background-color: #fff;
-
-  border-radius: 20px;
-  margin: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#site--preview{
-  width: 85%;
-  margin-top: 20px;
-  height: 100px;
-  cursor: pointer;
-  &:before{
-    content: "Пример:";
-    font-size: 10pt;
-    color: #000;
-    position: absolute;
-    left: 13%;
-    top: 13%;
-  }
-  &:after{
-    content: "Открыть";
-    font-size: 10pt;
-    color: #000;
-  }
-}
-#price--preview {
-  &:before{
-    content: "В месяц:";
-    font-size: 6pt;
-    color: #000;
-    position: absolute;
-    top: 27%;
-    text-transform: uppercase;
-    opacity: .7;
-  }
-  p {
-    position: relative;
-    top: -10%;
-    font-size: 20pt;
-  }
 }

@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {VisibleContext} from "../context";
 import Tooltip from '@mui/material/Tooltip';
 import {styled, tooltipClasses} from "@mui/material";
+import classes from "./models/NavCircles.module.css"
 
 const NavCircles = () => {
 
@@ -30,7 +31,7 @@ const NavCircles = () => {
         },
     }));
     return (
-            <div className="buttons-inner">
+            <div className={classes.buttonsInner}>
                 {buttons.map(({title, theme}) => (
                     <LightTooltip sx={{zIndex:1}} key={theme} title={title}>
                         <button
@@ -38,7 +39,7 @@ const NavCircles = () => {
                                 backgroundColor: themes[theme].backgroundColor,
                                 color: textColor
                             }}
-                            className={ currentTheme === theme ? "button circle-button active-circle" : "button circle-button"}
+                            className={ currentTheme === theme ? classes.button + " " + classes.activeButton : classes.button}
                             onClick={() => setCurrentTheme(theme)}/>
                     </LightTooltip>
                 ))}

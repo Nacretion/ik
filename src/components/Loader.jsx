@@ -1,5 +1,5 @@
 import React from 'react';
-import "./models/Loader.models.css";
+import "./models/Loader.module.css";
 
 const Loader = () => {
     const carousel = [" circle1", " circle2", " circle3", " circle4"]

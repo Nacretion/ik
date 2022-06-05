@@ -99,7 +99,7 @@ export default function Setup({funcPrev}) {
                                funcPrev={() => setCarousel([carousel[1], carousel[2], carousel[0]])}/>
                 </div>
             </header>
-            <main {...handlers} style={{height: "500px"}}>
+            <main {...handlers}>
                 <div className="cards-wrapper">
                     <div className={"card-inner " + carousel[0]}>
                         <p style={hiddenTextStyle}>&nbsp;</p>
@@ -243,7 +243,7 @@ export default function Setup({funcPrev}) {
                                     transition: ".5s"
                                 }
                             } className="arrow m-right"/>
-                        <p>Выберите категорию</p>
+                        <p style={{fontSize: "18pt"}}>Выберите категорию</p>
                     </div>
                     <NavCircles/>
                 </div>
