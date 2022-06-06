@@ -10,7 +10,6 @@ import {useSwipeable} from 'react-swipeable';
 import {alpha, Button, Menu, MenuItem, styled} from "@mui/material";
 import StoriesContainer from "../components/StoriesContainer";
 import MenuIcon from '@mui/icons-material/Menu';
-import {RiSeparator} from "react-icons/all";
 
 const stories = [
     {
@@ -112,16 +111,13 @@ export default function HomePage(options) {
     }));
     return (
         <>
-            <header className="link-heading" style={{backgroundColor: bgColor}}>
-                <p style={{marginLeft: "5px", textTransform: "none"}} className="heading">ik-Catalog</p>
-                <div className="storiesContainer link-heading" >
-                    <StoriesContainer modalOpen={modalOpen}
-                             handleModalOpen={handleModalOpen}
-                             handleModalClose={handleModalClose}
-                             handleStoriesEnd={handleStoriesEnd}/>
+            <header style={{backgroundColor: bgColor}}>
+                <div className="linkHeading">
+                    <p style={{marginLeft: "5px", textTransform: "none"}} className="heading">ik-Catalog</p>
                     <Button
                         sx={{border: "1px solid #fff", width: "60px", height: "60px"}}
                         onClick={handleClick}
+                        id="menu"
                     ><MenuIcon style={{fill: textColor}}/></Button>
                     <StyledMenu
                         anchorEl={anchorEl}
@@ -136,33 +132,43 @@ export default function HomePage(options) {
                             setCarousel(["card1", "card3", "card2"])
                             navigate("/setup")
                         }} disableRipple>Реклама на портале</MenuItem>
+                        <MenuItem onClick={() => {
+                            navigate("/All")
+                        }} disableRipple>Каталог</MenuItem>
                         <MenuItem onClick={handleClose} disableRipple>Наши услуги</MenuItem>
                         {/*<MenuItem onClick={handleClose} disableRipple>Город</MenuItem>*/}
                     </StyledMenu>
                 </div>
-                <RiSeparator/>
-                <div className="link-heading">
+
+                <div className="storiesContainer" >
+                    <StoriesContainer modalOpen={modalOpen}
+                             handleModalOpen={handleModalOpen}
+                             handleModalClose={handleModalClose}
+                             handleStoriesEnd={handleStoriesEnd}/>
+                </div>
+                <div className="linkHeading" id="mainHeading">
                     <p className="heading">{heading}</p>
                     <NavArrows/>
                 </div>
             </header>
             <main style={{backgroundColor: (bgColor + "B3")}}>
                 <div {...handlers}
-                     className="cards-inner">
-                    {cards[currentTheme].slice(indexes[0], indexes[1]).map(({image}) => (
+                     className="cardWrapper">
+                    {cards[currentTheme].map(({image}) => (
                         <button
                             key={image}
                             style={{
                                 background: image,
+                                backgroundSize: "cover",
                                 transform: rotated? "scaleX(-1)": ""
                             }}
-                            className="card card-cafe" onClick={()=> {setRotated(!rotated)}}>
+                            className="card" onClick={()=> {setRotated(!rotated)}}>
                             <div style={{
                                 border: "1px solid #fff",
                                 color: "rgb(255,255,255)",
                                 backgroundColor: "rgba(0,0,0,0.54)",
                                 textTransform: "uppercase"
-                            }} className="circle-button">Лого
+                            }} className="circleButton">Лого
                             </div>
                         </button>
                     ))}
@@ -171,19 +177,7 @@ export default function HomePage(options) {
             </main>
             <footer style={{backgroundColor: bgColor}}>
                 <NavCircles textColor={textColor} setCurrentTheme={setCurrentTheme}/>
-                <div className="arrow-inner link" onClick={() => navigate("/all")}>
-                    <p className="heading">Каталог</p>
-                    <ArrowBottom
-                        style={textColor === "#ffffff" ? {
-                            filter: "invert(100%) sepia(99%) saturate(0%) hue-rotate(282deg) brightness(113%) contrast(100%)",
-                            transition: "1s"
-                        } : {
-                            filter: "invert(0%) sepia(62%) saturate(16%) hue-rotate(267deg) brightness(86%) contrast(100%)",
-                            transition: "1s"
-                        }
-                        }
-                        className="arrow"/>
-                </div>
+
             </footer>
         </>
     );

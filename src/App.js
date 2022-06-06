@@ -19,7 +19,6 @@ export default function App() {
     const [carousel, setCarousel] = useState(["card1", "card2", "card3"])
 
 
-
     const initialStateSwipeable = {
         delta: '100',
         preventScrollOnSwipe: false,
@@ -42,19 +41,12 @@ export default function App() {
 
 
     const toPrevTheme = () => {
-        if (indexes[0] !== 0 && cards[currentTheme].length > 6) {
-            setIndexes([indexes[0] - 6, indexes[1] - 6])
-        } else if (currentTheme > 0) setCurrentTheme(currentTheme - 1)
+        if (currentTheme > 0) setCurrentTheme(currentTheme - 1)
         else setCurrentTheme(10)
     }
     const toNextTheme = () => {
-        if (cards[currentTheme].length > indexes[1]) {
-            setIndexes([indexes[0] + 6, indexes[1] + 6])
-        } else {
-            setIndexes([0, 6])
-            if (currentTheme < 10) setCurrentTheme(currentTheme + 1)
-            else setCurrentTheme(0)
-        }
+        if (currentTheme < 10) setCurrentTheme(currentTheme + 1)
+        else setCurrentTheme(0)
     }
 
 

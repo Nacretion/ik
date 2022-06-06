@@ -11,7 +11,7 @@ import {ReactComponent as RepairIcon} from "../svg/circles/repair.svg";
 import {ReactComponent as EstateIcon} from "../svg/circles/estate.svg";
 import {ReactComponent as AutoIcon} from "../svg/circles/auto.svg";
 import {stories} from "../consts/consts";
-import classes from "./models/StoriesContainer.module.css"
+import classes from "./models/StoriesContainer.module.scss"
 import Stories from "stories-react";
 
 const StoriesContainer = ({modalOpen, handleModalOpen, handleModalClose, handleStoriesEnd}) => {
@@ -61,7 +61,7 @@ const StoriesContainer = ({modalOpen, handleModalOpen, handleModalClose, handleS
                 <ClinicIcon className={classes.svg}/>
             </div>
             <div style={{backgroundColor: "#D7E1F1", border: "2px solid #D7E1F1"}} className={classes.circleButton}>
-                <RepairIcon style={{fill: "#E8505B"}} className="svg"/>
+                <RepairIcon style={{fill: "#E8505B"}} className={classes.svg}/>
             </div>
             <div style={{backgroundColor: "#99B898", border: "2px solid #99B898"}} className={classes.circleButton}>
                 <EstateIcon className={classes.svg}/>

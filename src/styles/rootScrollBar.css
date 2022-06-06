@@ -9,3 +9,15 @@ html::-webkit-scrollbar-track {
     -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
     background-color: #f9f9fd;
 }
+
+.cardWrapper::-webkit-scrollbar {
+    width: 3px;
+    background-color: #ffffff20;
+}
+.cardWrapper::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+.cardWrapper::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #ffffff20;
+}

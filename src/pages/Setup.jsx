@@ -83,8 +83,8 @@ export default function Setup({funcPrev}) {
 
                 }
             </Modal>
-            <header>
-                <div className="link-heading">
+            <header style={{backgroundColor: bgColor}}>
+                <div className="linkHeading">
                     <ArrowBack style={
                         textColor === "#ffffff" ? {
                             filter: "invert(100%) sepia(99%) saturate(0%) hue-rotate(282deg) brightness(113%) contrast(100%)",
@@ -99,7 +99,7 @@ export default function Setup({funcPrev}) {
                                funcPrev={() => setCarousel([carousel[1], carousel[2], carousel[0]])}/>
                 </div>
             </header>
-            <main {...handlers}>
+            <main {...handlers} style={{backgroundColor: (bgColor + "B3")}}>
                 <div className="cards-wrapper">
                     <div className={"card-inner " + carousel[0]}>
                         <p style={hiddenTextStyle}>&nbsp;</p>
@@ -230,7 +230,7 @@ export default function Setup({funcPrev}) {
                     </div>
                 </div>
             </main>
-            <footer style={{marginTop: "70px"}}>
+            <footer style={{marginTop: "70px", backgroundColor: bgColor}}>
                 <div>
                     <div className="heading arrow-inner" style={{marginBottom: "10px"}}>
                         <ArrowForward

@@ -2,58 +2,56 @@
   margin: 0;
   padding: 0;
 }
+
 .App {
   display: flex;
   font-family: "Gotham Pro", sans-serif;
   max-height: 100vh;
-  overflow-y: hidden;
+  overflow: hidden;
 }
+
 .heading {
   text-transform: uppercase;
   font-size: 20pt;
 }
 
-.link-heading {
+.linkHeading {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
 header, footer {
   display: flex;
-  position: fixed;
   justify-content: space-between;
-  left: 0;
-  right: 0;
   z-index: 10;
   padding: 10px 10vw;
   height: fit-content;
 }
 
 header {
-  top: 0;
   flex-direction: column;
-}
-
-main {
-  position: relative;
-  padding: 25vh 10vw 15vh 10vw;
-  overflow-y: auto;
-  min-height: 100vh;
-  background-color: #ffffffB3;
-  left: 0;
-  right: 0;
-  box-sizing:border-box;
-
-  .link-heading {
-    margin: 10px 0;
+  justify-content: left;
+  height: 30vh;
+  #mainHeading {
+    border-top: 1px solid #fff;
+    padding-top: 10px;
   }
 }
 
-footer {
-  height: 100px;
+main {
+  display: flex;
   align-items: center;
-  bottom: 0;
+  height: 53vh;
+  padding: 2vh 8vw;
 }
+
+footer {
+  height: 5vh;
+  padding-bottom: 5vh;
+  align-items: center;
+}
+
 .arrow-inner {
   display: flex;
   align-items: center;
@@ -63,8 +61,97 @@ footer {
 
 .arrow {
   height: 30px;
+  cursor: pointer;
 }
 
-.storiesContainer {
+.cardWrapper {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  height: 55vh;
+  overflow-y: auto;
+  padding: 2vh 2vw;
+  width: 100%;
+
+  .card {
+    height: 200px;
+    box-shadow: 0 0 50px #00000080 inset;
+    border: none;
+    transition: all .5s;
+    &:hover{
+      box-shadow: 0 0 50px #000000 inset;
+    }
+  }
+}
+
+.card {
   display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+  transition: .5s;
+
+  .circleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.circleButton {
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+#menu {
+  transform: scale(.7);
+  border: 1px solid #fff;
+  svg {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+
+@media screen and (min-width: 1400px){
+  header {
+    height: 22vh;
+  }
+  main {
+    height: 61vh;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  header {
+    padding: 10px;
+    height: 26vh;
+    .linkHeading {
+      margin-top: auto;
+    }
+  }
+  footer {
+    padding: 20px;
+    height: 15vh;
+    flex-direction: column;
+    p {
+      margin-top: 10px;
+    }
+  }
+  main {
+    height: 58vh;
+    padding: 10px 5px;
+  }
+  .cardWrapper {
+    padding: 5vw;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    .card {
+      height: 35vh;
+    }
+  }
+
 }

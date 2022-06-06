@@ -6,7 +6,7 @@ export const themes = [
     {heading: "Автоуслуги", backgroundColor: "#125374", color: "#ffffff"},
     {heading: "Спорт/досуг", backgroundColor: "#EFB7B7", color: "#000000"},
     {heading: "Образование", backgroundColor: "#B1E1A2", color: "#000000"},
-    {heading: "Юридические услуги", backgroundColor: "#99B898", color: "#ffffff"},
+    {heading: "Юр. услуги", backgroundColor: "#99B898", color: "#ffffff"},
     {heading: "Ремонт/быт", backgroundColor: "#5a9bff", color: "#000000"},
     {heading: "Недвижимость", backgroundColor: "#14B1AB", color: "#ffffff"},
     {heading: "Продукты", backgroundColor: "#FBD46D", color: "#000000"}
