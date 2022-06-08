@@ -91,9 +91,9 @@ function Content() {
                 }
             }}>
             <Routes location={displayLocation}>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/all" element={<All/>}/>
-                <Route path="/setup" element={<Setup/>}/>
+                <Route path="/dev" element={<HomePage/>}/>
+                <Route path="/dev/all" element={<All/>}/>
+                <Route path="/dev/setup" element={<Setup/>}/>
                 <Route path="/vysota89" element={<Vysota89/>}/>
                 <Route path="*" element={<Error/>}/>
             </Routes>
