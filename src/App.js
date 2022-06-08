@@ -3,11 +3,12 @@ import './styles/App.scss';
 import './styles/rootAnimation.css';
 import {VisibleContext} from "./context";
 import {Route, Routes, useLocation} from "react-router-dom";
-import {cards, themes} from "./consts/consts"
+import {themes} from "./consts/consts"
 import HomePage from "./pages/HomePage";
 import All from "./pages/All";
 import Setup from "./pages/Setup";
 import Error from "./pages/Error";
+import Vysota89 from "./sites/Vysota/Vysota89";
 
 
 export default function App() {
@@ -15,7 +16,6 @@ export default function App() {
     const [textColor, changeTextColor] = useState("")
     const [bgColor, changeBgColor] = useState("")
     const [heading, changeHeading] = useState("")
-    const [indexes, setIndexes] = useState([0, 6])
     const [carousel, setCarousel] = useState(["card1", "card2", "card3"])
 
 
@@ -61,7 +61,6 @@ export default function App() {
                 themes,
                 currentTheme,
                 bgColor,
-                indexes,
                 carousel,
                 setCarousel,
                 initialStateSwipeable
@@ -95,6 +94,7 @@ function Content() {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/all" element={<All/>}/>
                 <Route path="/setup" element={<Setup/>}/>
+                <Route path="/vysota89" element={<Vysota89/>}/>
                 <Route path="*" element={<Error/>}/>
             </Routes>
         </div>

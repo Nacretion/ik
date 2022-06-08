@@ -1,0 +1,29 @@
+.Vysota {
+  overflow-y: auto;
+  width: 100vw;
+  max-height: 100vh;
+  background-color: black;
+  color: white!important;
+}
+.main {
+}
+.container {
+  height: 100vh;
+}
+.heading {
+  text-transform: uppercase;
+  font-size: 24pt;
+  font-weight: bold;
+}
+
+.Vysota::-webkit-scrollbar {
+  width: 3px;
+  background-color: #ffffff20;
+}
+.Vysota::-webkit-scrollbar-thumb {
+  background-color: #fff;
+}
+.Vysota::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: #ffffff20;
+}
