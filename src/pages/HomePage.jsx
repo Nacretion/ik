@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import NavCircles from "../components/NavCircles";
-import {ReactComponent as ArrowBottom} from "../svg/arrow-bottom.svg";
 import {useNavigate} from "react-router-dom";
 import {VisibleContext} from "../context";
 import NavArrows from "../components/UI/NavArrows";
@@ -31,7 +30,7 @@ export default function HomePage(options) {
     const [rotated, setRotated] = useState(false)
     const {
         heading, textColor, setCurrentTheme,
-        currentTheme, indexes, toNextTheme,
+        currentTheme, toNextTheme,
         toPrevTheme, setCarousel, bgColor,
         initialStateSwipeable
     } = useContext(VisibleContext)
@@ -147,7 +146,7 @@ export default function HomePage(options) {
                              handleStoriesEnd={handleStoriesEnd}/>
                 </div>
                 <div className="linkHeading" id="mainHeading">
-                    <p className="heading">{heading}</p>
+                    <p className="heading fmText">{heading}</p>
                     <NavArrows/>
                 </div>
             </header>

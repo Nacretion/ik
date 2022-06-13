@@ -94,7 +94,6 @@ const Vysota89 = () => {
                             <WhatsAppIcon className={classes.svg}/>
                             <TelegramIcon className={classes.svg}/>
                         </p>
-
                     </div>
                     <img alt="Монтаж баннера" className={classes.heading + " " + classes.image} src={png7}/>
                 </div>
@@ -104,7 +103,7 @@ const Vysota89 = () => {
                 <div onClick={() => {
                     document.getElementById("slide0").scrollTop = 0
                 }} className={classes.inRow}>
-                    <p>ГЛАВНАЯ</p>
+                    <p>В НАЧАЛО</p>
                     <ArrowTop className={classes.svg}/>
                 </div>
             </footer>

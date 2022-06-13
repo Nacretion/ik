@@ -42,10 +42,10 @@ export default function App() {
 
     const toPrevTheme = () => {
         if (currentTheme > 0) setCurrentTheme(currentTheme - 1)
-        else setCurrentTheme(10)
+        else setCurrentTheme(11)
     }
     const toNextTheme = () => {
-        if (currentTheme < 10) setCurrentTheme(currentTheme + 1)
+        if (currentTheme < 11) setCurrentTheme(currentTheme + 1)
         else setCurrentTheme(0)
     }
 

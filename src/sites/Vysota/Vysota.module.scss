@@ -26,6 +26,7 @@
 }
 
 .main {
+  position: initial;
   flex-direction: column;
   padding: 0;
   height: fit-content;
@@ -33,7 +34,8 @@
 
 .footer {
   padding: 0 8vw;
-  height: 10vh;
+  background-color: #000;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: space-between;

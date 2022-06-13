@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .App {
@@ -26,13 +27,19 @@ header, footer {
   justify-content: space-between;
   z-index: 10;
   padding: 10px 10vw;
-  height: fit-content;
+
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+
 }
 
 header {
   flex-direction: column;
   justify-content: left;
-  height: 30vh;
+  height: 220px;
+  top: 0;
   #mainHeading {
     border-top: 1px solid #fff;
     padding-top: 10px;
@@ -40,15 +47,20 @@ header {
 }
 
 main {
+  position: absolute;
   display: flex;
   align-items: center;
-  height: 53vh;
-  padding: 2vh 8vw;
+  padding: 20px 8vw;
+  box-sizing: border-box;
+  top: 220px;
+  bottom: 70px;
+  left: 0;
+  right: 0;
 }
 
 footer {
-  height: 5vh;
-  padding-bottom: 5vh;
+  height: 70px;
+  bottom: 0;
   align-items: center;
 }
 
@@ -69,7 +81,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  height: 55vh;
+  height: 100%;
   overflow-y: auto;
   padding: 2vh 2vw;
   width: 100%;
@@ -116,33 +128,24 @@ footer {
 }
 
 
-@media screen and (min-width: 1400px){
-  header {
-    height: 22vh;
-  }
-  main {
-    height: 61vh;
-  }
-}
 
 @media screen and (max-width: 900px) {
+  .fmText {
+    font-size: 16pt;
+  }
   header {
-    padding: 10px;
-    height: 26vh;
+    padding: 10px 0;
     .linkHeading {
-      margin-top: auto;
+      padding: 0 10px;
     }
   }
   footer {
-    padding: 20px;
-    height: 15vh;
     flex-direction: column;
     p {
       margin-top: 10px;
     }
   }
   main {
-    height: 58vh;
     padding: 10px 5px;
   }
   .cardWrapper {

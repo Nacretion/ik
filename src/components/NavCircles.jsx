@@ -20,6 +20,7 @@ const NavCircles = () => {
         { title: "Услуги ремонта", theme: 8 },
         { title: "Недвижимость", theme: 9 },
         { title: "Продукты", theme: 10 },
+        { title: "Подарки", theme: 11 },
     ]
     const LightTooltip = styled(({ className, ...props }) => (
         <Tooltip {...props} classes={{ popper: className }} />

@@ -1,7 +1,6 @@
 .buttonsInner {
     display: flex;
-    width: fit-content;
-    height: fit-content;
+    padding: 20px;
     gap: 5px;
     transition: .5s;
 }
